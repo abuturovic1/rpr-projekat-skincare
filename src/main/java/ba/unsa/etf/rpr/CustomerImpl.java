@@ -6,7 +6,7 @@ import java.util.List;
 
 public class CustomerImpl implements CustomerDAO{
     private Connection connection;
-    private PreparedStatement ps_pretraziSve,ps_dodaj,noviIdUpit,ps_pretraga,ps_izmjena;
+    private PreparedStatement ps_pretraziSve,ps_dodaj,noviIdUpit,ps_pretraga,ps_izmjena,ps_brisanje;
     private static CustomerImpl instance = null;
 
     private CustomerImpl() throws SQLException{
@@ -19,7 +19,7 @@ public class CustomerImpl implements CustomerDAO{
         noviIdUpit = connection.prepareStatement("SELECT MAX(customer_id)+1 FROM Customer");
         ps_pretraga = connection.prepareStatement("SELECT * FROM Customer WHERE customer_id = ? ");
         ps_izmjena = connection.prepareStatement("UPDATE Customer SET username = ?,password = ?,first_name = ?,last_name =?,email=?, phone_number = ? WHERE id = ?");//id ne mijenjamo, on nam je dat
-
+        ps_brisanje = connection.prepareStatement("DELETE FROM Customer WHERE customer_id = ? ");
     }
 
  public static CustomerImpl getInstance()throws SQLException{
@@ -107,7 +107,12 @@ public class CustomerImpl implements CustomerDAO{
 
     @Override
     public void delete(Customer customer) {
-
+        try {
+            ps_brisanje.setInt(1, customer.getCustomerID());
+            ps_brisanje.execute();
+        } catch(SQLException throwables){
+            throwables.printStackTrace();
+        }
     }
     @Override
     public List<Customer> getbyUsername(String username) {
