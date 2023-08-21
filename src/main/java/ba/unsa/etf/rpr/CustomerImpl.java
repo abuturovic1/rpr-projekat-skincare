@@ -6,7 +6,7 @@ import java.util.List;
 
 public class CustomerImpl implements CustomerDAO{
     private Connection connection;
-    private PreparedStatement ps_pretraziSve,ps_dodaj,noviIdUpit,ps_pretraga;
+    private PreparedStatement ps_pretraziSve,ps_dodaj,noviIdUpit,ps_pretraga,ps_izmjena;
     private static CustomerImpl instance = null;
 
     private CustomerImpl() throws SQLException{
@@ -18,6 +18,7 @@ public class CustomerImpl implements CustomerDAO{
         ps_dodaj = connection.prepareStatement("INSERT INTO Customer VALUES (?,?,?,?,?,?,?)");
         noviIdUpit = connection.prepareStatement("SELECT MAX(customer_id)+1 FROM Customer");
         ps_pretraga = connection.prepareStatement("SELECT * FROM Customer WHERE customer_id = ? ");
+        ps_izmjena = connection.prepareStatement("UPDATE Customer SET username = ?,password = ?,first_name = ?,last_name =?,email=?, phone_number = ? WHERE id = ?");//id ne mijenjamo, on nam je dat
 
     }
 
@@ -73,14 +74,14 @@ public class CustomerImpl implements CustomerDAO{
             if(rs.next()) customer.setCustomerID(rs.getInt(1));
             else customer.setCustomerID(1);
         // dodavanje upit i setovanje
-            ps_dodaj.setInt(1,customer.getCustomerID());
-            ps_dodaj.setString(2,customer.getUsername());
-            ps_dodaj.setString(3,customer.getPassword());
-            ps_dodaj.setString(4,customer.getFirstName());
-            ps_dodaj.setString(5,customer.getLastName());
-            ps_dodaj.setString(6,customer.getEmail());
-            ps_dodaj.setString(7,customer.getPhoneNumber());
-            ps_dodaj.execute();
+            ps_izmjena.setInt(1,customer.getCustomerID());
+            ps_izmjena.setString(2,customer.getUsername());
+            ps_izmjena.setString(3,customer.getPassword());
+            ps_izmjena.setString(4,customer.getFirstName());
+            ps_izmjena.setString(5,customer.getLastName());
+            ps_izmjena.setString(6,customer.getEmail());
+            ps_izmjena.setString(7,customer.getPhoneNumber());
+            ps_izmjena.execute();
         } catch(SQLException throwables){
             throwables.printStackTrace();
         }
@@ -89,6 +90,18 @@ public class CustomerImpl implements CustomerDAO{
 
     @Override
     public void update(Customer customer){
+        try {
+            ps_dodaj.setInt(7, customer.getCustomerID());
+            ps_dodaj.setString(1, customer.getUsername());
+            ps_dodaj.setString(2, customer.getPassword());
+            ps_dodaj.setString(3, customer.getFirstName());
+            ps_dodaj.setString(4, customer.getLastName());
+            ps_dodaj.setString(5, customer.getEmail());
+            ps_dodaj.setString(6, customer.getPhoneNumber());
+            ps_dodaj.execute();
+        }catch(SQLException throwables){
+            throwables.printStackTrace();
+        }
 
     }
 
@@ -101,11 +114,7 @@ public class CustomerImpl implements CustomerDAO{
         return null;
 
     }
-    public void dodaj(Customer c){
 
-
-
-    }
 
 
 
