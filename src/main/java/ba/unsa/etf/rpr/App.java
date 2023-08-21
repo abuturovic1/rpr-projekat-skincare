@@ -1,11 +1,7 @@
 package ba.unsa.etf.rpr;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.SQLException;
-import java.util.Properties;
+import java.util.Scanner;
 
 /**
  * Hello world!
@@ -13,39 +9,35 @@ import java.util.Properties;
  */
 public class App 
 {
+    private static CustomerImpl customerdao;
+    private static ReservationImpl reservationdao;
+
+    private static TreatmentImpl treatmentdao;
     public static void main( String[] args ) throws SQLException {
-       // String url = "jdbc:mysql://sql.freedb.tech:3306/freedb_rpr baza";
-        //String user = "freedb_abuturovic1";
-        //  String password = "Qb%TgZbRVWft5bZ";
-        // String user = System.getenv("DB_USERNAME");
-        // String password = System.getenv("DB_PASSWORD");
-       /* Properties properties = new Properties();
-        try (
-                InputStream input = App.class.getClassLoader().getResourceAsStream("config.properties")) {
-            properties.load(input);
-        } catch (
-                IOException e) {
-            e.printStackTrace();
-        }
 
-        String url = "jdbc:mysql://sql.freedb.tech:3306/freedb_rpr baza";
-        String user = properties.getProperty("db.username");
-        String password = properties.getProperty("db.password");
-        try {
-            Class.forName("com.mysql.cj.jdbc.Driver");
-            Connection connection = DriverManager.getConnection(url,user,password);
-            System.out.println("Connection is successful to the database " +url);
+        customerdao = CustomerImpl.getInstance();
+        reservationdao = ReservationImpl.getInstance();
+        treatmentdao = TreatmentImpl.getInstance();
 
-        } catch (ClassNotFoundException e) {
-            throw new RuntimeException(e);
 
-        } catch (
-                SQLException e) {
-            throw new RuntimeException(e);
-        }*/
-        CustomerDAO customerDAO = new CustomerDAOImpl();
-        Customer customer = customerDAO.get(1);
-        System.out.println(customer);
+        int opcija = 0;
+        do{
+            System.out.println("Unesite opciju:\n1 - pretraga\n2 - unos\n3 - izmjena\n4 -brisanje\n0 - kraj programa ");
+            Scanner ulaz = new Scanner(System.in);
+            opcija = ulaz.nextInt();
+            switch(opcija){
+                case 1: pretraga(); break;
+                case 2: unos(); break;
+                case 3: izmjena(); break;
+                case 4: brisanje(); break;
+                case 0: break;
+                default:
+                    System.out.println("Nepoznata opcija");
+
+            }
+        } while(opcija!=0);
+
+
 }
 }
 
