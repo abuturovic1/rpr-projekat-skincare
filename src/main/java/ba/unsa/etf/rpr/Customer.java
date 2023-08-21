@@ -26,7 +26,7 @@ public Customer(int customerID,String username,String password,String firstName,
 
 }
 
-    @Override
+  /*  @Override
     public String toString() {
         return "Customer{" +
                 "customerID=" + customerID +
@@ -37,7 +37,7 @@ public Customer(int customerID,String username,String password,String firstName,
                 ", email='" + email + '\'' +
                 ", phoneNumber='" + phoneNumber + '\'' +
                 '}';
-    }
+    }*/
 
     public Customer(){}
     public String getUsername() {
