@@ -2,7 +2,7 @@ package ba.unsa.etf.rpr;
 import java.sql.Time;
 import java.util.*;
 
-public class Reservation {  //javabean klasa Reservation
+public class Reservation {  //javabean class
     private int reservationID,customerID,treatmentID;
     private Date reservationDate;
     private Time time;
