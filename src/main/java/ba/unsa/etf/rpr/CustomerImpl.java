@@ -18,7 +18,7 @@ public class CustomerImpl implements CustomerDAO{
         ps_dodaj = connection.prepareStatement("INSERT INTO Customer VALUES (?,?,?,?,?,?,?)");
         noviIdUpit = connection.prepareStatement("SELECT MAX(customer_id)+1 FROM Customer");
         ps_pretraga = connection.prepareStatement("SELECT * FROM Customer WHERE customer_id = ? ");
-        ps_izmjena = connection.prepareStatement("UPDATE Customer SET username = ?,password = ?,first_name = ?,last_name =?,email=?, phone_number = ? WHERE customer_id = ?");//id ne mijenjamo, on nam je dat
+        ps_izmjena = connection.prepareStatement("UPDATE Customer SET username = ?,password = ?,first_name = ?,last_name =?,email=?, phone_number = ? WHERE customer_id = ?");
         ps_brisanje = connection.prepareStatement("DELETE FROM Customer WHERE customer_id = ? ");
     }
 
