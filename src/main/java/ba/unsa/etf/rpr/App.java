@@ -13,20 +13,22 @@ import java.util.Properties;
  */
 public class App 
 {
-    public static void main( String[] args )
-    {
-        String url = "jdbc:mysql://sql.freedb.tech:3306/freedb_rpr baza";
+    public static void main( String[] args ) throws SQLException {
+       // String url = "jdbc:mysql://sql.freedb.tech:3306/freedb_rpr baza";
         //String user = "freedb_abuturovic1";
         //  String password = "Qb%TgZbRVWft5bZ";
         // String user = System.getenv("DB_USERNAME");
         // String password = System.getenv("DB_PASSWORD");
-        Properties properties = new Properties();
-        try (InputStream input = App.class.getClassLoader().getResourceAsStream("config.properties")) {
+       /* Properties properties = new Properties();
+        try (
+                InputStream input = App.class.getClassLoader().getResourceAsStream("config.properties")) {
             properties.load(input);
-        } catch (IOException e) {
+        } catch (
+                IOException e) {
             e.printStackTrace();
         }
 
+        String url = "jdbc:mysql://sql.freedb.tech:3306/freedb_rpr baza";
         String user = properties.getProperty("db.username");
         String password = properties.getProperty("db.password");
         try {
@@ -37,8 +39,13 @@ public class App
         } catch (ClassNotFoundException e) {
             throw new RuntimeException(e);
 
-        } catch (SQLException e) {
+        } catch (
+                SQLException e) {
             throw new RuntimeException(e);
-        }
-    }
+        }*/
+        CustomerDAO customerDAO = new CustomerDAOImpl();
+        Customer customer = customerDAO.get(1);
+        System.out.println(customer);
 }
+}
+

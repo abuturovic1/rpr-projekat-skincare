@@ -1,11 +1,12 @@
 package ba.unsa.etf.rpr;
 
+import java.sql.SQLException;
 import java.util.List;
-import java.util.Optional;
+
 import java.util.ArrayList;
 
 public interface Dao <T>{
-    ArrayList<T> get(int id);
+    T get(int id) throws SQLException;
 
     List<T> getAll();
 

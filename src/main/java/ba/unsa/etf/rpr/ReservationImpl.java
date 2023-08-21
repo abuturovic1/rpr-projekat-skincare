@@ -3,49 +3,41 @@ package ba.unsa.etf.rpr;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
-public class CustomerSQLImplementation implements CustomerDAO{
+
+public class ReservationImpl implements ReservationDAO{
     private Connection connection;
     Properties properties = new Properties();
-    private CustomerSQLImplementation() throws SQLException{
+    private ReservationImpl() throws SQLException{
+
         String url = "jdbc:mysql://sql.freedb.tech:3306/freedb_rpr baza";
         String username="freedb_abuturovic1";
         String pass = properties.getProperty("db.password");
         connection = DriverManager.getConnection(url,username,pass);
     }
     @Override
-    public List<Customer> getbyUsername(String username) {
-        List<Customer> customers = new ArrayList<>();
-        String sql = "SELECT * FROM customers WHERE username = ? ";
-
-        return null;
-
-    }
-
-    @Override
-    public ArrayList<Customer> get(int id) {
+    public Reservation get(int id) {
         return null;
     }
 
     @Override
-    public List<Customer> getAll() {
+    public List<Reservation> getAll() {
         return null;
     }
 
     @Override
-    public void save(Customer customer) {
+    public void save(Reservation reservation) {
 
     }
 
     @Override
-    public void update(Customer customer) {
+    public void update(Reservation reservation) {
 
     }
 
     @Override
-    public void delete(Customer customer) {
+    public void delete(Reservation reservation) {
 
     }
 }

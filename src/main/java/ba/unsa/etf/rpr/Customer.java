@@ -1,21 +1,48 @@
 package ba.unsa.etf.rpr;
+
 import java.util.Date;
+
+
 public class Customer {
     private int customerID;
+    private String username;
+    private String password;
+
     private String firstName;
     private String lastName;
     private String email;
     private String phoneNumber;
-    private Date date;
-public Customer(int customerID,String firstName,String lastName,String email,String phoneNumber,Date date){
+
+
+public Customer(int customerID,String username,String password,String firstName, String lastName, String email, String phoneNumber){
+    this.username=username;
+    this.password=password;
     this.customerID=customerID;
     this.firstName=firstName;
     this.lastName=lastName;
     this.email=email;
-    this.date=date;
+    this.phoneNumber=phoneNumber;
+
 
 }
-public Customer(){}
+
+
+    public Customer(){}
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
     public int getCustomerID() {
         return customerID;
     }
@@ -54,14 +81,6 @@ public Customer(){}
         this.phoneNumber = phoneNumber;
     }
 
-    public Date getDate() {
-        return date;
-    }
-
-    public void setDate(Date date) {
-        this.date = date;
-    }
 
 
-
-    }
+}
