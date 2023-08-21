@@ -6,7 +6,7 @@ import java.util.List;
 
 public class CustomerImpl implements CustomerDAO{
     private Connection connection;
-    private PreparedStatement ps_pretraziSve,ps_dodaj;
+    private PreparedStatement ps_pretraziSve,ps_dodaj,noviIdUpit;
     private static CustomerImpl instance = null;
 
     private CustomerImpl() throws SQLException{
@@ -15,10 +15,10 @@ public class CustomerImpl implements CustomerDAO{
         String pass = System.getenv("DB_PASSWORD");
         connection = DriverManager.getConnection(url,username,pass);
         ps_pretraziSve = connection.prepareStatement("SELECT * FROM Customer");
-
+        ps_dodaj = connection.prepareStatement("INSERT INTO Customer VALUES (?,?,?,?,?,?,?)");
+        noviIdUpit = connection.prepareStatement("SELECT MAX(customer_id)+1 FROM Customer");
 
     }
-
 
 
  public static CustomerImpl getInstance()throws SQLException{
@@ -80,7 +80,23 @@ public class CustomerImpl implements CustomerDAO{
 
     @Override
     public void save(Customer customer) {
+        try{
+            ResultSet rs =  noviIdUpit.executeQuery();
 
+            if(rs.next()) customer.setCustomerID(rs.getInt(1));
+            else customer.setCustomerID(1);
+// dodavanje upit i setovanje
+            ps_dodaj.setInt(1,customer.getCustomerID());
+            ps_dodaj.setString(2,customer.getUsername());
+            ps_dodaj.setString(3,customer.getPassword());
+            ps_dodaj.setString(4,customer.getFirstName());
+            ps_dodaj.setString(5,customer.getLastName());
+            ps_dodaj.setString(6,customer.getEmail());
+            ps_dodaj.setString(7,customer.getPhoneNumber());
+            ps_dodaj.execute();
+        } catch(SQLException throwables){
+            throwables.printStackTrace();
+        }
     }
 
 
@@ -96,6 +112,11 @@ public class CustomerImpl implements CustomerDAO{
     @Override
     public List<Customer> getbyUsername(String username) {
         return null;
+
+    }
+    public void dodaj(Customer c){
+
+
 
     }
 
