@@ -82,8 +82,8 @@ public class CustomerImpl implements CustomerDAO{
             ps_izmjena.setString(6,customer.getEmail());
             ps_izmjena.setString(7,customer.getPhoneNumber());
             ps_izmjena.execute();
-        } catch(SQLException throwables){
-            throwables.printStackTrace();
+        } catch(SQLException e){
+            e.printStackTrace();
         }
     }
 
@@ -99,8 +99,8 @@ public class CustomerImpl implements CustomerDAO{
             ps_dodaj.setString(5, customer.getEmail());
             ps_dodaj.setString(6, customer.getPhoneNumber());
             ps_dodaj.execute();
-        }catch(SQLException throwables){
-            throwables.printStackTrace();
+        }catch(SQLException e){
+            e.printStackTrace();
         }
 
     }
@@ -110,8 +110,8 @@ public class CustomerImpl implements CustomerDAO{
         try {
             ps_brisanje.setInt(1, customer.getCustomerID());
             ps_brisanje.execute();
-        } catch(SQLException throwables){
-            throwables.printStackTrace();
+        } catch(SQLException e){
+            e.printStackTrace();
         }
     }
     @Override
