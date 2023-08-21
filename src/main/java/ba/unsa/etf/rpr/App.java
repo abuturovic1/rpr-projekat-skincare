@@ -1,12 +1,7 @@
 package ba.unsa.etf.rpr;
-
 import java.sql.SQLException;
 import java.util.Scanner;
-
-/**
- * Hello world!
- *
- */
+import java.sql.*;
 public class App 
 {
     private static CustomerImpl customerdao;
@@ -15,20 +10,19 @@ public class App
     private static TreatmentImpl treatmentdao;
 
     private static Scanner ulaz;
-    public static void main( String[] args ) throws SQLException {
+    public static void main(String[] args) throws SQLException {
 
         customerdao = CustomerImpl.getInstance();
-        reservationdao = ReservationImpl.getInstance();
-        treatmentdao = TreatmentImpl.getInstance();
         ulaz = new Scanner(System.in);
 
-        //Standardni meni
-        int opcija = 0;
+        //Standard menu
+        int opcija1 = 0,opcija2 = 0,opcija3 = 0;
         do {
             System.out.println("Unesite opciju:\n1 - pretraga\n2 - unos\n3 - izmjena\n4 -brisanje\n0 - kraj programa ");
 
-            opcija = ulaz.nextInt();
-            switch (opcija) {
+            opcija1 = ulaz.nextInt();
+            if(ulaz.hasNextLine()) ulaz.nextLine();
+            switch (opcija1) {
                 case 1:
                     pretraga();
                     break;
@@ -41,24 +35,52 @@ public class App
                 case 4:
                     brisanje();
                     break;
+                case 5:
+                    pretragaSvih();
                 case 0:
                     break;
                 default:
-                    System.out.println("Nepoznata opcija");
+                    System.out.println("Nepoznata opcija!");
 
             }
-        } while (opcija != 0);
+        } while (opcija1 != 0);
 
 
     }
 
-    private static void unos() {
-        String idcustomer,korIme,lozinka,ime,prezime,mail,brTel;
-        System.out.println("Unesite id korisnika: "); //korisnik ne treba da unosi id??
-        idcustomer = ulaz.nextLine();
+    private static void brisanje() {
+        int id;
+        System.out.println("Unesi ID korisnika kojeg brišete: ");
+        id = ulaz.nextInt();
+        Customer customer = new Customer(id,"","","","","","");
+        customerdao.delete(customer);
+
+    }
+
+    private static void pretraga() {
+        System.out.println("Unesite id korisnika:" );
+        int id = ulaz.nextInt();
+        for(Customer customer : customerdao.get(id))
+        System.out.println("Ime i prezime korisnika : " + customer.getFirstName()+" "+customer.getLastName());
+    }
+
+    private static void izmjena() {
+        int id;
+        System.out.println("ID korisnika kojeg mijenjate: ");
+
+
+    }
+        private static void unos(){
+        int id=0;
+        Customer customer = unosD(id);
+        customerdao.save(customer);
+        }
+    private static Customer unosD(int id) {
+        String korIme,lozinka,ime,prezime,mail,brTel;
+
         System.out.println("Unesite username korisnika: ");
         korIme = ulaz.nextLine();
-        System.out.println("Unesite lozinku korisnika: "); //ovo ne bi trebalo al ok ako je admin neki nesto
+        System.out.println("Unesite lozinku korisnika: ");
         lozinka = ulaz.nextLine();
         System.out.println("Unesite ime korisnika: ");
         ime = ulaz.nextLine();
@@ -68,7 +90,7 @@ public class App
         mail = ulaz.nextLine();
         System.out.println("Unesite broj telefona korisnika: ");
         brTel = ulaz.nextLine();
-
+        return (new Customer(id,korIme,lozinka,ime,prezime,mail,brTel));
     }
 
 
