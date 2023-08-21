@@ -117,7 +117,6 @@ public class CustomerImpl implements CustomerDAO{
     @Override
     public List<Customer> getbyUsername(String username) {
         return null;
-
     }
 
 
