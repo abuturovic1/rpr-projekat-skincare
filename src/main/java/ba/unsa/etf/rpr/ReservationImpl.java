@@ -1,9 +1,6 @@
 package ba.unsa.etf.rpr;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -30,17 +27,34 @@ public class ReservationImpl implements ReservationDAO{
         connection = DriverManager.getConnection(url,username,pass);
         pretraga_ps = connection.prepareStatement("SELECT * FROM Reservation WHERE reservation_id = ? ");
         sveRezervacije_ps = connection.prepareStatement("SELECT * FROM Reservation");
+        izmijeni_ps = connection.prepareStatement("UPDATE Reservation SET reservation_date = ? , reservation_time = ? , status = ? WHERE reservation_id = ? ");
+
+
 
 
     }
     @Override
     public ArrayList<Reservation> get(int id) {
+
         return null;
     }
 
     @Override
     public List<Reservation> getAll() {
-        return null;
+
+        ArrayList<Reservation>reservations = new ArrayList<Reservation>();
+        try{
+            ResultSet rs = sveRezervacije_ps.executeQuery();
+            while(rs.next()){
+                reservations.add(new Reservation(rs.getInt(1),rs.getInt(2),rs.getInt(3),
+                        rs.getDate(4),rs.getTime(5),
+                        rs.getString(6)));
+
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return reservations;
     }
 
     @Override
