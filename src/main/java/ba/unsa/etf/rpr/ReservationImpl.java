@@ -7,7 +7,7 @@ import java.util.List;
 
 public class ReservationImpl implements ReservationDAO{
     private Connection connection;
-    PreparedStatement pretraga_ps,dodaj_ps,izmijeni_ps,sveRezervacije_ps;
+    PreparedStatement pretraga_ps,dodaj_ps,izmijeni_ps,sveRezervacije_ps,brisanje_ps;
 
     private static ReservationImpl instance = null;
     public static ReservationImpl getInstance()throws SQLException{
@@ -28,7 +28,7 @@ public class ReservationImpl implements ReservationDAO{
         pretraga_ps = connection.prepareStatement("SELECT * FROM Reservation WHERE reservation_id = ? ");
         sveRezervacije_ps = connection.prepareStatement("SELECT * FROM Reservation");
         izmijeni_ps = connection.prepareStatement("UPDATE Reservation SET reservation_date = ? , reservation_time = ? , status = ? WHERE reservation_id = ? ");
-
+        brisanje_ps = connection.prepareStatement("DELETE FROM Reservation WHERE reservation_id = ?");
 
 
 
@@ -68,6 +68,12 @@ public class ReservationImpl implements ReservationDAO{
 
     @Override
     public void delete(Reservation reservation) {
+        try {
+            brisanje_ps.setInt(1, reservation.getCustomerID());
+            brisanje_ps.execute();
+        } catch(SQLException e){
+            e.printStackTrace();
+        }
 
     }
 }
