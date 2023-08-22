@@ -18,25 +18,25 @@ public class App
         //Standard menu
         int opcija1 = 0,opcija2 = 0,opcija3 = 0;
         do {
-            System.out.println("Unesite opciju:\n1 - pretraga\n2 - unos\n3 - izmjena\n4 -brisanje\n0 - kraj programa ");
+            System.out.println("Unesite opciju:\n1 - pretraga\n2 - unos\n3 - izmjena\n4 - brisanje\n5 - pretraga svih korisnika\n0 - kraj programa ");
 
             opcija1 = ulaz.nextInt();
             if(ulaz.hasNextLine()) ulaz.nextLine();
             switch (opcija1) {
                 case 1:
-                    pretraga();
+                    pretraga(); //radi
                     break;
                 case 2:
-                    unos();
+                    unos(); //ne radi
                     break;
                 case 3:
-                    izmjena();
+                    izmjena(); // ne radi
                     break;
                 case 4:
-                    brisanje();
+                    brisanje(); //radi
                     break;
                 case 5:
-                    pretragaSvih();
+                    pretragaSvih(); //radi
                 case 0:
                     break;
                 default:
@@ -58,15 +58,19 @@ public class App
     }
 
     private static void pretraga() {
-        System.out.println("Unesite id korisnika:" );
+        System.out.println("Unesite id korisnika kojeg želite pretražiti:" );
         int id = ulaz.nextInt();
         for(Customer customer : customerdao.get(id))
-        System.out.println("Ime i prezime korisnika : " + customer.getFirstName()+" "+customer.getLastName());
+        System.out.println("Ime i prezime tog korisnika je: " + customer.getFirstName()+" "+customer.getLastName());
     }
 
     private static void izmjena() {
         int id;
         System.out.println("ID korisnika kojeg mijenjate: ");
+        id = ulaz.nextInt();
+        if(ulaz.hasNextLine()) ulaz.nextLine();
+        Customer customer = unosD(id);
+        customerdao.update(customer);
 
 
     }
