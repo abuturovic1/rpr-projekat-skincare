@@ -70,18 +70,19 @@ public class CustomerImpl implements CustomerDAO{
     public void save(Customer customer) {
         try{
             ResultSet rs =  noviIdUpit.executeQuery();
-
             if(rs.next()) customer.setCustomerID(rs.getInt(1));
             else customer.setCustomerID(1);
         // dodavanje upit i setovanje
-            ps_izmjena.setInt(1,customer.getCustomerID());
-            ps_izmjena.setString(2,customer.getUsername());
-            ps_izmjena.setString(3,customer.getPassword());
-            ps_izmjena.setString(4,customer.getFirstName());
-            ps_izmjena.setString(5,customer.getLastName());
-            ps_izmjena.setString(6,customer.getEmail());
-            ps_izmjena.setString(7,customer.getPhoneNumber());
-            ps_izmjena.execute();
+
+
+            ps_dodaj.setInt(7, customer.getCustomerID());
+            ps_dodaj.setString(1, customer.getUsername());
+            ps_dodaj.setString(2, customer.getPassword());
+            ps_dodaj.setString(3, customer.getFirstName());
+            ps_dodaj.setString(4, customer.getLastName());
+            ps_dodaj.setString(5, customer.getEmail());
+            ps_dodaj.setString(6, customer.getPhoneNumber());
+            ps_dodaj.execute();
         } catch(SQLException e){
             e.printStackTrace();
         }
@@ -91,14 +92,14 @@ public class CustomerImpl implements CustomerDAO{
     @Override
     public void update(Customer customer){
         try {
-            ps_dodaj.setInt(7, customer.getCustomerID());
-            ps_dodaj.setString(1, customer.getUsername());
-            ps_dodaj.setString(2, customer.getPassword());
-            ps_dodaj.setString(3, customer.getFirstName());
-            ps_dodaj.setString(4, customer.getLastName());
-            ps_dodaj.setString(5, customer.getEmail());
-            ps_dodaj.setString(6, customer.getPhoneNumber());
-            ps_dodaj.execute();
+            ps_izmjena.setInt(1,customer.getCustomerID());
+            ps_izmjena.setString(2,customer.getUsername());
+            ps_izmjena.setString(3,customer.getPassword());
+            ps_izmjena.setString(4,customer.getFirstName());
+            ps_izmjena.setString(5,customer.getLastName());
+            ps_izmjena.setString(6,customer.getEmail());
+            ps_izmjena.setString(7,customer.getPhoneNumber());
+            ps_izmjena.execute();
         }catch(SQLException e){
             e.printStackTrace();
         }
