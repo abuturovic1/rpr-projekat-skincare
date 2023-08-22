@@ -16,36 +16,64 @@ public class App
         ulaz = new Scanner(System.in);
 
         //Standard menu
-        int opcija1 = 0,opcija2 = 0,opcija3 = 0;
-        do {
-            System.out.println("Unesite opciju:\n1 - pretraga\n2 - unos\n3 - izmjena\n4 - brisanje\n5 - pretraga svih korisnika\n0 - kraj programa ");
+        int opcija1 = 0, opcija2 = 0, opcija3 = 0, brTabele;
+        System.out.println("Unesi broj tabele : \n1 - Customer\n2 - Reservation\n3 - Treatment");
+        brTabele = ulaz.nextInt();
+        if (brTabele == 1) {
+            do {
+                System.out.println("Tabela Customer\nUnesite opciju:\n1 - pretraga\n2 - unos\n3 - izmjena\n4 - brisanje\n5 - pretraga svih korisnika\n0 - kraj programa ");
+
+                opcija1 = ulaz.nextInt();
+                if (ulaz.hasNextLine()) ulaz.nextLine();
+                switch (opcija1) {
+                    case 1:
+                        pretraga();
+                        break;
+                    case 2:
+                        unos();
+                        break;
+                    case 3:
+                        izmjena();
+                        break;
+                    case 4:
+                        brisanje();
+                        break;
+                    case 5:
+                        pretragaSvih();
+                    case 0:
+                        break;
+                    default:
+                        System.out.println("Nepoznata opcija!");
+
+                }
+            } while (opcija1 != 0);
+
+        } else if (brTabele == 2) {
+            System.out.println("Tabela Customer\nUnesite opciju:\n1 - pretraga\n2 - unos\n3 - izmjena\n4 - brisanje\n5 - pretraga svih korisnika\n0 - kraj programa ");
 
             opcija1 = ulaz.nextInt();
-            if(ulaz.hasNextLine()) ulaz.nextLine();
+            if (ulaz.hasNextLine()) ulaz.nextLine();
             switch (opcija1) {
                 case 1:
-                    pretraga(); //radi
+                    pretragaR();
                     break;
                 case 2:
-                    unos(); //ne radi
+                    unosR();
                     break;
                 case 3:
-                    izmjena(); // ne radi
+                    izmjenaR();
                     break;
                 case 4:
-                    brisanje(); //radi
+                    brisanjeR();
                     break;
                 case 5:
-                    pretragaSvih(); //radi
+                    pretragaSvihR();
                 case 0:
                     break;
                 default:
                     System.out.println("Nepoznata opcija!");
-
             }
-        } while (opcija1 != 0);
-
-
+        }
     }
 
     private static void brisanje() {
