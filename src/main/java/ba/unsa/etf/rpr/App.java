@@ -82,13 +82,13 @@ public class App
 
         System.out.println("Unesi ID rezervacije koju brišete: ");
         id_rez = ulaz.nextInt();
-        System.out.println("Unesi ID korisnika čiju rezervaciju brišete: ");
+        /*System.out.println("Unesi ID korisnika čiju rezervaciju brišete: ");
         id_kor = ulaz.nextInt();
         System.out.println("Unesi ID tretmana: ");
-        id_tretmana=ulaz.nextInt();
+        id_tretmana=ulaz.nextInt();*/
 
-        Reservation reservation = new Reservation(id_rez,id_kor,id_tretmana,null,null,"");
-
+        Reservation reservation = new Reservation(id_rez,0,0,null,null,"");
+        reservationdao.delete(reservation);
 
     }
 
