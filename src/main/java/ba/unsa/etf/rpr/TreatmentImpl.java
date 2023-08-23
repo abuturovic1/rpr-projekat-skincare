@@ -7,7 +7,7 @@ import java.util.List;
 public class TreatmentImpl implements TreatmentDAO{
 private Connection connection;
     private static TreatmentImpl instance = null;
-    private PreparedStatement pretragaK_ps,izbrisi_ps;
+    private PreparedStatement pretragaK_ps,izbrisi_ps,pretraziSve;
 
 
     private TreatmentImpl() throws SQLException{
@@ -17,6 +17,8 @@ private Connection connection;
         connection = DriverManager.getConnection(url,username,pass);
         pretragaK_ps = connection.prepareStatement("SELECT * FROM Treatment WHERE customer_id = ? ");
         izbrisi_ps=connection.prepareStatement("DELETE FROM Treatment WHERE treatment_id = ?");
+        pretraziSve = connection.prepareStatement("SELECT * FROM Treatment");
+
 
 
     }
@@ -58,10 +60,19 @@ private Connection connection;
       return treatments;
     }
 
-    @Override
+   @Override
     public List<Treatment> getAll() {
+       ArrayList<Treatment>treatments = new ArrayList<Treatment>();
+        try{
+            ResultSet rs = pretraziSve.executeQuery();
+            while(rs.next()){
+                treatments.add(new Treatment(rs.getInt(1),rs.getInt(2),rs.getString(3),rs.getString(4),rs.getInt(5),rs.getDouble(6)));
 
-        return null;
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return treatments;
     }
 
     @Override
