@@ -231,6 +231,14 @@ public class App
     private static void brisanjeT() {
     }
     private static void pretragaTretmanaKorisnika() {
+        System.out.println("Unesite id korisnika čije informacije o rezervaciji želite vidjeti:");
+        int id = ulaz.nextInt();
+        for (Treatment treatment : treatmentdao.get(id)) //pretraga info o korisniku koji ima rez za uneseni id
+        {
+
+            System.out.println("Informacije o tretmanu odabranog korisnika:\nNaziv tretmana: " +treatment.getName()+"\nTrajanje tretmana: "+treatment.getDuration()+"\nCijena tretmana: "+treatment.getPrice());
+
+        }
     }
 
 

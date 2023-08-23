@@ -48,6 +48,7 @@ private Connection connection;
               treatment.setDescription(rs.getString("description"));
               treatment.setDuration(rs.getInt("duration"));
               treatment.setPrice(rs.getDouble("price"));
+              treatments.add(treatment);
           }
       } catch (SQLException e) {
           throw new RuntimeException(e);
