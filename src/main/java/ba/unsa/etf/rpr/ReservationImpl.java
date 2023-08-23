@@ -90,6 +90,17 @@ public class ReservationImpl implements ReservationDAO{
 
     @Override
     public void update(Reservation reservation) {
+        try {
+            izmijeni_ps.setInt(6,reservation.getReservationID());
+            izmijeni_ps.setInt(1,reservation.getCustomerID());
+            izmijeni_ps.setInt(2,reservation.getTreatmentID());
+            izmijeni_ps.setDate(3, (Date) reservation.getReservationDate());
+            izmijeni_ps.setTime(4,reservation.getTime());
+            izmijeni_ps.setString(5,reservation.getStatus());
+
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
     }
 
     @Override
