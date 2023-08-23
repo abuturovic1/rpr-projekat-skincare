@@ -7,7 +7,7 @@ import java.util.List;
 
 public class ReservationImpl implements ReservationDAO{
     private Connection connection;
-    PreparedStatement pretraga_ps,dodaj_ps,izmijeni_ps,sveRezervacije_ps,brisanje_ps,pretragaK_ps;
+    PreparedStatement pretraga_ps,dodaj_ps,izmijeni_ps,sveRezervacije_ps,brisanje_ps,pretragaK_ps,noviId;
 
     private static ReservationImpl instance = null;
     public static ReservationImpl getInstance()throws SQLException{
@@ -32,6 +32,8 @@ public class ReservationImpl implements ReservationDAO{
         //retrieve reservations for a specific customer using their ID
         //search for customer reservation informations by entering customer id..
         pretragaK_ps=connection.prepareStatement("SELECT * FROM Reservation WHERE customer_id = ?");
+        noviId = connection.prepareStatement("SELECT MAX(reservation_id)+1 FROM Reservation");
+        dodaj_ps = connection.prepareStatement("INSERT INTO Customer VALUES (?,?,?,?,?,?,?)");
 
     }
 /*    @Override
@@ -85,6 +87,22 @@ public class ReservationImpl implements ReservationDAO{
 
     @Override
     public void save(Reservation reservation) {
+        try{
+            ResultSet rs =  noviId.executeQuery();
+            if(rs.next()) reservation.setReservationID(rs.getInt(1));
+            else reservation.setReservationID(1);
+            // dodavanje upit i setovanje
+            dodaj_ps.setInt(1, reservation.getReservationID());
+            dodaj_ps.setInt(2, reservation.getCustomerID());
+            dodaj_ps.setInt(3, reservation.getTreatmentID());
+            dodaj_ps.setDate(4, (Date) reservation.getReservationDate());
+            dodaj_ps.setTime(5, reservation.getTime());
+            dodaj_ps.setString(6, reservation.getStatus());
+
+            dodaj_ps.execute();
+        } catch(SQLException e){
+            e.printStackTrace();
+        }
 
     }
 
