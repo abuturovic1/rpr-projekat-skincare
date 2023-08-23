@@ -27,7 +27,7 @@ public class ReservationImpl implements ReservationDAO{
         connection = DriverManager.getConnection(url,username,pass);
         pretraga_ps = connection.prepareStatement("SELECT * FROM Reservation WHERE reservation_id = ? ");
         sveRezervacije_ps = connection.prepareStatement("SELECT * FROM Reservation");
-        izmijeni_ps = connection.prepareStatement("UPDATE Reservation SET reservation_date = ? , reservation_time = ? , status = ? WHERE reservation_id = ? ");
+        izmijeni_ps = connection.prepareStatement("UPDATE Reservation SET customer_id=?, treatment_id = ?, reservation_date = ? , reservation_time = ? , status = ? WHERE reservation_id = ? ");
         brisanje_ps = connection.prepareStatement("DELETE FROM Reservation WHERE reservation_id = ?");
         //retrieve reservations for a specific customer using their ID
         //search for customer reservation informations by entering customer id..
