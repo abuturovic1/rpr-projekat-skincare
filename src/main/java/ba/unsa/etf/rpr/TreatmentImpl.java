@@ -18,6 +18,7 @@ private Connection connection;
         pretragaK_ps = connection.prepareStatement("SELECT * FROM Treatment WHERE customer_id = ? ");
         izbrisi_ps=connection.prepareStatement("DELETE FROM Treatment WHERE treatment_id = ?");
         pretraziSve = connection.prepareStatement("SELECT * FROM Treatment");
+        //update po nazivu tretmana:
         izmijeni_ps = connection.prepareStatement("UPDATE Treatment SET treatment_id = ? , customer_id = ?, description = ? , duration = ? , price = ?, WHERE name = ?");
 
 
@@ -86,12 +87,12 @@ private Connection connection;
     @Override
     public void update(Treatment treatment) {
 try{
-    izmijeni_ps = setInt();
-    izmijeni_ps = setInt();
-    izmijeni_ps = setString();
-    izmijeni_ps = setString();
-    izmijeni_ps = setInt();
-    izmijeni_ps = setDouble();
+    izmijeni_ps.setString(6,treatment.getName()); //name
+    izmijeni_ps.setInt(1,treatment.getTreatment_id());
+    izmijeni_ps.setInt(2,treatment.getCustomer_id());
+    izmijeni_ps.setString(3,treatment.getDescription());
+    izmijeni_ps.setInt(4,treatment.getDuration());
+    izmijeni_ps.setDouble(5,treatment.getPrice());
 
 }catch(SQLException e){
     e.printStackTrace();

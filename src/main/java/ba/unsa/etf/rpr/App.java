@@ -244,6 +244,12 @@ public class App
 
     }
     private static void izmjenaT() {
+        String nazivT;
+        System.out.println("Unesi naziv tretmana: ");
+        nazivT = ulaz.next();
+        if(ulaz.hasNextLine()) ulaz.nextLine();
+
+
     }
     private static void brisanjeT() {
         int id_tr;
