@@ -52,13 +52,13 @@ public class App
 
         } else if (brTabele == 2) {
             do {
-                System.out.println("Tabela Reservation\nUnesite opciju:\n1 - pretraga\n2 - unos\n3 - izmjena\n4 - brisanje\n5 - pretraga po id-u korisnika\n0 - kraj programa ");
+                System.out.println("Tabela Reservation\nUnesite opciju:\n1 - pretraga svih rezervacija\n2 - unos\n3 - izmjena\n4 - brisanje\n5 - pretraga po id-u korisnika\n0 - kraj programa ");
 
                 opcija2 = ulaz.nextInt();
                 if (ulaz.hasNextLine()) ulaz.nextLine();
                 switch (opcija2) {
                     case 1:
-                        //pretragaR();
+                        pretragaSvihR(); //radi
                         break;
                     case 2:
                         unosR(); //ne radi , radi kad obrisem u bazi foreign keys...
@@ -80,7 +80,7 @@ public class App
         }
         else if(brTabele == 3) {
             do {
-                System.out.println("Tabela Treatment\nUnesite opciju:\n1 - pretraga\n2 - unos\n3 - izmjena\n4 - brisanje\n5 - pretraga po id-u korisnika\n0 - kraj programa ");
+                System.out.println("Tabela Treatment\nUnesite opciju:\n1 - unos\n2 - pretraga svih zakazanih tretmana\n3 - izmjena\n4 - brisanje\n5 - pretraga po id-u korisnika\n0 - kraj programa ");
                 opcija3 = ulaz.nextInt();
                 if (ulaz.hasNextLine()) ulaz.nextLine();
                 switch(opcija3){
@@ -88,7 +88,7 @@ public class App
                         unosT();
                         break;
                     case 2: 
-                        pretragaT();
+                        pretragaSvihT();
                         break;
                     case 3: 
                         izmjenaT();
@@ -96,7 +96,8 @@ public class App
                     case 4: 
                         brisanjeT();
                         break;
-                    case 5: 
+
+                    case 5:
                         pretragaTretmanaKorisnika();
                         break;
                     case 0: break;
@@ -106,6 +107,7 @@ public class App
             }while(opcija3!=0);
         }
     }
+
 
 
 
@@ -157,15 +159,23 @@ public class App
         brTel = ulaz.nextLine();
         return (new Customer(id,korIme,lozinka,ime,prezime,mail,brTel));
     }
-
-
     private static void pretragaSvih(){
         for(Customer customer : customerdao.getAll())
             System.out.println("Imena i prezimena korisnika su: " +customer.getFirstName()+ " " +customer.getLastName());
 
     }
+
+
     //Za Reservation:
     //Ovo ce ispisati samo datum rezervacije, vrijeme i status
+    private static void pretragaSvihR() {
+        for(Reservation reservation : reservationdao.getAll()){
+            System.out.println(" " + reservation.getReservationDate() + " " +reservation.getTime()+" "+reservation.getStatus());
+        }
+
+
+    }
+
     private static void pretragaRezervacijeKorisnika() {
         System.out.println("Unesite id korisnika čije informacije o rezervaciji želite vidjeti:");
         int id = ulaz.nextInt();
@@ -225,11 +235,23 @@ public class App
     //Za Treatment:
     private static void unosT() {
     }
-    private static void pretragaT() {
+    private static void pretragaSvihT() {
+        for(Treatment treatment : treatmentdao.getAll()){
+            System.out.println("\nNaziv tretmana: " + treatment.getName()+ "\nOpis tretmana: " +treatment.getDescription()+"\nTrajanje tretmana: "+ treatment.getDuration() +"\nCijena tretmana: " +treatment.getPrice());
+        }
+
+
+
     }
     private static void izmjenaT() {
     }
     private static void brisanjeT() {
+        int id_tr;
+
+        System.out.println("Unesi ID tretmana koji želite obrisati: ");
+        id_tr = ulaz.nextInt();
+        Treatment treatment = new Treatment(id_tr,0," "," ",0,0);
+        treatmentdao.delete(treatment);
 
     }
     private static void pretragaTretmanaKorisnika() {
