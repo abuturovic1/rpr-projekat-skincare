@@ -44,6 +44,7 @@ private Connection connection;
           while(rs.next()){
               Treatment treatment = new Treatment();
               treatment.setTreatment_id(rs.getInt("treatment_id"));
+              treatment.setCustomer_id(rs.getInt("customer_id"));
               treatment.setName(rs.getString("name"));
               treatment.setDescription(rs.getString("description"));
               treatment.setDuration(rs.getInt("duration"));
@@ -53,6 +54,7 @@ private Connection connection;
       } catch (SQLException e) {
           throw new RuntimeException(e);
       }
+      return treatments;
     }
 
     @Override

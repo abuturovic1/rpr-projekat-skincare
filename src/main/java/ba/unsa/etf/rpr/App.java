@@ -15,6 +15,7 @@ public class App
         customerdao = CustomerImpl.getInstance();
         ulaz = new Scanner(System.in);
         reservationdao = ReservationImpl.getInstance();
+        treatmentdao = TreatmentImpl.getInstance();
 
         //Standard menu
         int opcija1 = 0, opcija2 = 0, opcija3 = 0, brTabele;
