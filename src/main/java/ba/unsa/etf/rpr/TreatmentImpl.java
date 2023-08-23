@@ -7,7 +7,7 @@ import java.util.List;
 public class TreatmentImpl implements TreatmentDAO{
 private Connection connection;
     private static TreatmentImpl instance = null;
-    private PreparedStatement pretragaK_ps,izbrisi_ps,pretraziSve;
+    private PreparedStatement pretragaK_ps,izbrisi_ps,pretraziSve,izmijeni_ps;
 
 
     private TreatmentImpl() throws SQLException{
@@ -18,6 +18,7 @@ private Connection connection;
         pretragaK_ps = connection.prepareStatement("SELECT * FROM Treatment WHERE customer_id = ? ");
         izbrisi_ps=connection.prepareStatement("DELETE FROM Treatment WHERE treatment_id = ?");
         pretraziSve = connection.prepareStatement("SELECT * FROM Treatment");
+        izmijeni_ps = connection.prepareStatement("UPDATE Treatment SET treatment_id = ? , customer_id = ?, description = ? , duration = ? , price = ?, WHERE name = ?");
 
 
 
@@ -84,7 +85,17 @@ private Connection connection;
 
     @Override
     public void update(Treatment treatment) {
+try{
+    izmijeni_ps = setInt();
+    izmijeni_ps = setInt();
+    izmijeni_ps = setString();
+    izmijeni_ps = setString();
+    izmijeni_ps = setInt();
+    izmijeni_ps = setDouble();
 
+}catch(SQLException e){
+    e.printStackTrace();
+}
     }
 
     @Override
