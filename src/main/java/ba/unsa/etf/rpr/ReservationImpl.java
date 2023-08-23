@@ -33,7 +33,7 @@ public class ReservationImpl implements ReservationDAO{
         //search for customer reservation informations by entering customer id..
         pretragaK_ps=connection.prepareStatement("SELECT * FROM Reservation WHERE customer_id = ?");
         noviId = connection.prepareStatement("SELECT MAX(reservation_id)+1 FROM Reservation");
-        dodaj_ps = connection.prepareStatement("INSERT INTO Customer VALUES (?,?,?,?,?,?,?)");
+        dodaj_ps = connection.prepareStatement("INSERT INTO Reservation VALUES (?,?,?,?,?,?)");
 
     }
 /*    @Override
@@ -52,8 +52,8 @@ public class ReservationImpl implements ReservationDAO{
                 reservation.setReservationID(rs.getInt("reservation_id"));
                 reservation.setCustomerID(rs.getInt("customer_id"));
                 reservation.setTreatmentID(rs.getInt("treatment_id"));
-                reservation.setReservationDate(rs.getDate("reservation_date"));
-                reservation.setTime(rs.getTime("reservation_time"));
+                reservation.setReservationDate(rs.getString("reservation_date"));
+                reservation.setTime(rs.getString("reservation_time"));
                 reservation.setStatus(rs.getString("status"));
 
                 reservations.add(reservation);
@@ -75,7 +75,7 @@ public class ReservationImpl implements ReservationDAO{
             ResultSet rs = sveRezervacije_ps.executeQuery();
             while(rs.next()){
                 reservations.add(new Reservation(rs.getInt(1),rs.getInt(2),rs.getInt(3),
-                        rs.getDate(4),rs.getTime(5),
+                        rs.getString(4),rs.getString(5),
                         rs.getString(6)));
 
             }
@@ -95,8 +95,8 @@ public class ReservationImpl implements ReservationDAO{
             dodaj_ps.setInt(1, reservation.getReservationID());
             dodaj_ps.setInt(2, reservation.getCustomerID());
             dodaj_ps.setInt(3, reservation.getTreatmentID());
-            dodaj_ps.setDate(4, (Date) reservation.getReservationDate());
-            dodaj_ps.setTime(5, reservation.getTime());
+            dodaj_ps.setString(4, reservation.getReservationDate());
+            dodaj_ps.setString(5, reservation.getTime());
             dodaj_ps.setString(6, reservation.getStatus());
 
             dodaj_ps.execute();
@@ -112,8 +112,8 @@ public class ReservationImpl implements ReservationDAO{
             izmijeni_ps.setInt(6,reservation.getReservationID());
             izmijeni_ps.setInt(1,reservation.getCustomerID());
             izmijeni_ps.setInt(2,reservation.getTreatmentID());
-            izmijeni_ps.setDate(3, (Date) reservation.getReservationDate());
-            izmijeni_ps.setTime(4,reservation.getTime());
+            izmijeni_ps.setString(3, String.valueOf(reservation.getReservationDate()));
+            izmijeni_ps.setString(4, String.valueOf(reservation.getTime()));
             izmijeni_ps.setString(5,reservation.getStatus());
 
         }catch (SQLException e){
