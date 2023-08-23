@@ -106,8 +106,6 @@ public class App
         }
     }
 
-    private static void pretragaT() {
-    }
 
 
     private static void brisanje() {
@@ -226,7 +224,15 @@ public class App
     //Za Treatment:
     private static void unosT() {
     }
-    
+    private static void pretragaT() {
+    }
+    private static void izmjenaT() {
+    }
+    private static void brisanjeT() {
+    }
+    private static void pretragaTretmanaKorisnika() {
+    }
+
 
 }
 
