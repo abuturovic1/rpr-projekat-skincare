@@ -43,14 +43,24 @@ public class ReservationImpl implements ReservationDAO{
     public ArrayList<Reservation> get(int customerID) {
         ArrayList<Reservation> reservations = new ArrayList<>();
         try{
-            pretragaK_ps.setString(1,String.valueOf(customerID));
-            ResultSet rs = pretraga_ps.executeQuery();
+           pretragaK_ps.setInt(1,customerID);
+            ResultSet rs = pretragaK_ps.executeQuery();
             while (rs.next()) {
-                reservations.add(new Reservation(rs.getInt(1),rs.getInt(2),rs.getInt(3),rs.getDate(4),rs.getTime(5),rs.getString(6)));
-            }
+                Reservation reservation = new Reservation();
+                reservation.setReservationID(rs.getInt("reservation_id"));
+                reservation.setCustomerID(rs.getInt("customer_id"));
+                reservation.setTreatmentID(rs.getInt("treatment_id"));
+                reservation.setReservationDate(rs.getDate("reservation_date"));
+                reservation.setTime(rs.getTime("reservation_time"));
+                reservation.setStatus(rs.getString("status"));
 
+                reservations.add(reservation);
+                //reservations.add(new Reservation(rs.getInt(1),rs.getInt(2),rs.getInt(3),rs.getDate(4),rs.getTime(5),rs.getString(6)));
+            }
+            //System.out.println("Uspjesna konekcija");
         }catch (SQLException e) {
             throw new RuntimeException(e);
+            //System.out.println("Neuspjesna konekcija"+e.getMessage());
         }
 
         return reservations;
