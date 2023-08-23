@@ -2,9 +2,10 @@ package ba.unsa.etf.rpr;
 
 public class Treatment {  //javabean klasa Treatment
     private String name,description; //naziv i opis tretmana
-    private int duration,treatment_id; //trajanje tretmana
+    private int duration,treatment_id,customer_id; //trajanje tretmana
     private double price; //cijena tretmana
-public Treatment(int treatment_id,String name, String description,int duration,double price){
+public Treatment(int treatment_id,int customer_id,String name, String description,int duration,double price){
+    this.customer_id=customer_id;
     this.treatment_id=treatment_id;
     this.name=name;
     this.description=description;
@@ -50,5 +51,13 @@ public Treatment(){}
 
     public void setTreatment_id(int treatment_id) {
         this.treatment_id = treatment_id;
+    }
+
+    public int getCustomer_id() {
+        return customer_id;
+    }
+
+    public void setCustomer_id(int customer_id) {
+        this.customer_id = customer_id;
     }
 }
