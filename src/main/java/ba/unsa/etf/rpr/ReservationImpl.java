@@ -95,7 +95,7 @@ public class ReservationImpl implements ReservationDAO{
     @Override
     public void delete(Reservation reservation) {
         try {
-            brisanje_ps.setInt(1, reservation.getCustomerID());
+            brisanje_ps.setInt(1, reservation.getReservationID());
             brisanje_ps.execute();
         } catch(SQLException e){
             e.printStackTrace();
