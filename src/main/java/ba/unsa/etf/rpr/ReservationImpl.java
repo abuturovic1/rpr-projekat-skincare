@@ -7,7 +7,7 @@ import java.util.List;
 
 public class ReservationImpl implements ReservationDAO{
     private Connection connection;
-    PreparedStatement pretraga_ps,dodaj_ps,izmijeni_ps,sveRezervacije_ps,brisanje_ps;
+    PreparedStatement pretraga_ps,dodaj_ps,izmijeni_ps,sveRezervacije_ps,brisanje_ps,pretragaK_ps;
 
     private static ReservationImpl instance = null;
     public static ReservationImpl getInstance()throws SQLException{
@@ -29,16 +29,42 @@ public class ReservationImpl implements ReservationDAO{
         sveRezervacije_ps = connection.prepareStatement("SELECT * FROM Reservation");
         izmijeni_ps = connection.prepareStatement("UPDATE Reservation SET reservation_date = ? , reservation_time = ? , status = ? WHERE reservation_id = ? ");
         brisanje_ps = connection.prepareStatement("DELETE FROM Reservation WHERE reservation_id = ?");
-
-
+        //retrieve reservations for a specific customer using their ID
+        //search for customer reservation informations by entering customer id..
+        pretragaK_ps=connection.prepareStatement("SELECT * FROM Reservation WHERE customer_id = ?");
 
     }
-    @Override
+/*    @Override
     public ArrayList<Reservation> get(int id) {
 
         return null;
-    }
+    }*/
+    @Override
+    public ArrayList<Reservation> get(int customerID) {
+        ArrayList<Reservation> reservations = new ArrayList<>();
+        try{
+            pretragaK_ps.setInt(1,customerID);
+            ResultSet rs = pretraga_ps.executeQuery();
+            while (rs.next()) {
+                Reservation reservation = new Reservation();
+                reservation.setReservationID(rs.getInt("reservation_id"));
+                reservation.setCustomerID(rs.getInt("customer_id"));
+                reservation.setTreatmentID(rs.getInt("treatment_id"));
+                reservation.setReservationDate(rs.getDate("reservation_date"));
+                reservation.setTime(rs.getTime("reservation_time"));
+                reservation.setStatus(rs.getString("status"));
 
+                reservations.add(reservation);
+            }
+
+            rs.close();
+            pretragaK_ps.close();
+        }catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+        return reservations;
+    }
     @Override
     public List<Reservation> getAll() {
 
