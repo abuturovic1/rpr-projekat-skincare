@@ -7,7 +7,7 @@ import java.util.List;
 public class TreatmentImpl implements TreatmentDAO{
 private Connection connection;
     private static TreatmentImpl instance = null;
-    private PreparedStatement pretragaK_ps;
+    private PreparedStatement pretragaK_ps,izbrisi_ps;
 
 
     private TreatmentImpl() throws SQLException{
@@ -16,6 +16,7 @@ private Connection connection;
         String pass = System.getenv("DB_PASSWORD");
         connection = DriverManager.getConnection(url,username,pass);
         pretragaK_ps = connection.prepareStatement("SELECT * FROM Treatment WHERE customer_id = ? ");
+        izbrisi_ps=connection.prepareStatement("DELETE FROM Treatment WHERE treatment_id = ?");
 
 
     }

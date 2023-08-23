@@ -230,6 +230,7 @@ public class App
     private static void izmjenaT() {
     }
     private static void brisanjeT() {
+
     }
     private static void pretragaTretmanaKorisnika() {
         System.out.println("Unesite id korisnika čije informacije o rezervaciji želite vidjeti:");
