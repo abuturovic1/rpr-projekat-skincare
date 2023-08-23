@@ -78,6 +78,13 @@ private Connection connection;
 
     @Override
     public void delete(Treatment treatment) {
+        try{
+            izbrisi_ps.setInt(1,treatment.getTreatment_id());
+            izbrisi_ps.execute();
+
+        }catch(SQLException e){
+            e.printStackTrace();
+        }
 
     }
 
