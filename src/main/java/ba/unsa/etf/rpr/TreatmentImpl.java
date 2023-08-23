@@ -42,7 +42,12 @@ private Connection connection;
           pretragaK_ps.setInt(1,customerID);
           ResultSet rs = pretragaK_ps.executeQuery();
           while(rs.next()){
-
+              Treatment treatment = new Treatment();
+              treatment.setTreatment_id(rs.getInt("treatment_id"));
+              treatment.setName(rs.getString("name"));
+              treatment.setDescription(rs.getString("description"));
+              treatment.setDuration(rs.getInt("duration"));
+              treatment.setPrice(rs.getDouble("price"));
           }
       } catch (SQLException e) {
           throw new RuntimeException(e);
