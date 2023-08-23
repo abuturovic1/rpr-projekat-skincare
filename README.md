@@ -1,1 +1,1 @@
-"# rpr-projekat-skincare" 
+"# SkinCarePro: Personalized Facial Treatment Booking and Consultation Platform" 
