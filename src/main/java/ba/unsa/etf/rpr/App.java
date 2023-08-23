@@ -14,6 +14,7 @@ public class App
 
         customerdao = CustomerImpl.getInstance();
         ulaz = new Scanner(System.in);
+        reservationdao = ReservationImpl.getInstance();
 
         //Standard menu
         int opcija1 = 0, opcija2 = 0, opcija3 = 0, brTabele;
@@ -49,31 +50,46 @@ public class App
             } while (opcija1 != 0);
 
         } else if (brTabele == 2) {
-            System.out.println("Tabela Customer\nUnesite opciju:\n1 - pretraga\n2 - unos\n3 - izmjena\n4 - brisanje\n5 - pretraga svih korisnika\n0 - kraj programa ");
+            System.out.println("Tabela Reservation\nUnesite opciju:\n1 - pretraga\n2 - unos\n3 - izmjena\n4 - brisanje\n5 - pretraga po id-u korisnika\n0 - kraj programa ");
 
             opcija1 = ulaz.nextInt();
             if (ulaz.hasNextLine()) ulaz.nextLine();
             switch (opcija1) {
                 case 1:
-                    pretragaR();
+                    //pretragaR();
                     break;
                 case 2:
-                    unosR();
+                    //unosR();
                     break;
                 case 3:
-                    izmjenaR();
+                    //izmjenaR();
                     break;
                 case 4:
                     brisanjeR();
                     break;
                 case 5:
-                    pretragaSvihR();
+                    pretragaRezervacijeKorisnika();
                 case 0:
                     break;
                 default:
                     System.out.println("Nepoznata opcija!");
             }
         }
+    }
+
+    private static void brisanjeR() {
+        int id_rez,id_kor,id_tretmana;
+
+        System.out.println("Unesi ID rezervacije koju brišete: ");
+        id_rez = ulaz.nextInt();
+        System.out.println("Unesi ID korisnika čiju rezervaciju brišete: ");
+        id_kor = ulaz.nextInt();
+        System.out.println("Unesi ID tretmana: ");
+        id_tretmana=ulaz.nextInt();
+
+        Reservation reservation = new Reservation(id_rez,id_kor,id_tretmana,null,null,"");
+
+
     }
 
     private static void brisanje() {
@@ -130,6 +146,18 @@ public class App
         for(Customer customer : customerdao.getAll())
             System.out.println("Imena i prezimena korisnika su: " +customer.getFirstName()+ " " +customer.getLastName());
 
+    }
+    //Ovo ce ispisati samo datum rezervacije, vrijeme i status
+    private static void pretragaRezervacijeKorisnika() {
+        System.out.println("Unesite id korisnika čije informacije o rezervaciji želite vidjeti:");
+        int id = ulaz.nextInt();
+        for (Reservation reservation : reservationdao.get(id)) //pretraga info o korisniku koji ima rez za uneseni id
+        {
+
+            System.out.println("Informacije o korisniku:\nDatum rezervacije: " + reservation.getReservationDate() +"\nVrijeme rezervacije: "+ reservation.getTime() +"\nStatus rezervacije: "+reservation.getStatus());
+
+
+        }
     }
 }
 
