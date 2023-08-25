@@ -44,7 +44,7 @@ public class LogInController implements Initializable {
         String username="freedb_abuturovic1";
         String pass = System.getenv("DB_PASSWORD");
         connection = DriverManager.getConnection(url,username,pass);
-        String sql = "SELECT FROM Customer WHERE username = ? AND password = ? ";
+        String sql = "SELECT username,password FROM Customer WHERE username = ? and password = ? ";
         try{
             Alert alert;
             if(si_username.getText().isEmpty() || si_password.getText().isEmpty()){

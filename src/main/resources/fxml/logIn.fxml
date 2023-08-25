@@ -12,8 +12,7 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.text.Font?>
 
-
-<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="439.0" prefWidth="668.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller = "ba.unsa.etf.rpr.controllers.LogInController">
+<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="439.0" prefWidth="668.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ba.unsa.etf.rpr.controllers.LogInController">
    <children>
       <BorderPane prefHeight="439.0" prefWidth="471.0">
          <left>
@@ -32,9 +31,9 @@
          <right>
             <AnchorPane prefHeight="439.0" prefWidth="331.0" styleClass="white-form" stylesheets="@../css/design.css" BorderPane.alignment="CENTER">
                <children>
-                  <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="100.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="109.0" fitWidth="100.0" layoutX="126.0" layoutY="61.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../img/user.jpg" />
+                        <Image url="@../img/login-icon-png-1.jpg" />
                      </image>
                   </ImageView>
                   <TextField fx:id="si_username" layoutX="94.0" layoutY="237.0" promptText="Username">
