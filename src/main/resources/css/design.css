@@ -2,7 +2,7 @@
 -fx-background-color: #fff;
 }
 .other-form{
--fx-background-color: linear-gradient(to bottom right,#9e20a0,#5a3375);
+-fx-background-color: linear-gradient(to bottom right,#451952,#AE445A); //#9e20a0,#5a3375
 }
 .create-btn{
 -fx-background-color:transparent;
