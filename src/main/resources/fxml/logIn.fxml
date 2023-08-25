@@ -13,7 +13,7 @@
 <?import javafx.scene.text.Font?>
 
 
-<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="439.0" prefWidth="668.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="439.0" prefWidth="668.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller = "ba.unsa.etf.rpr.controllers.LogInController">
    <children>
       <BorderPane prefHeight="439.0" prefWidth="471.0">
          <left>
@@ -25,7 +25,7 @@
                      </font>
                   </Label>
                   <Label layoutX="96.0" layoutY="359.0" text="You don't have an account?" textFill="WHITE" />
-                  <Button layoutX="125.0" layoutY="391.0" mnemonicParsing="false" styleClass="create-btn" stylesheets="@../css/design.css" text="Register now" />
+                  <Button fx:id="si_register" layoutX="125.0" layoutY="391.0" mnemonicParsing="false" styleClass="create-btn" stylesheets="@../css/design.css" text="Register now" />
                </children>
             </AnchorPane>
          </left>
@@ -52,7 +52,7 @@
                         <Font name="System Bold" size="24.0" />
                      </font>
                   </Label>
-                  <Button fx:id="si_logInBtn" layoutX="94.0" layoutY="348.0" mnemonicParsing="false" prefHeight="48.0" prefWidth="154.0" styleClass="other-form" stylesheets="@../css/design.css" text="Log In" textFill="WHITE">
+                  <Button fx:id="si_logInBtn" layoutX="94.0" layoutY="348.0" mnemonicParsing="false" onAction="#loginAccount" prefHeight="48.0" prefWidth="154.0" styleClass="other-form" stylesheets="@../css/design.css" text="Log In" textFill="WHITE">
                      <padding>
                         <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
                      </padding>
