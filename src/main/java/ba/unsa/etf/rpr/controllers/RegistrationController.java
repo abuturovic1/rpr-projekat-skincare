@@ -84,7 +84,7 @@ public class RegistrationController implements Initializable {
                     customer.setPhoneNumber(reg_phoneN.getText());
 
 
-                    CustomerImpl customerDAO = new CustomerImpl(); // Instantiate appropriately
+                    CustomerImpl customerDAO = new CustomerImpl();
                     customerDAO.save(customer);
                     alert = new Alert(Alert.AlertType.INFORMATION);
                     alert.setTitle("Information Message");
