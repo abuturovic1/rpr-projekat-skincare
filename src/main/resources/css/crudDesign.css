@@ -3,3 +3,9 @@
 -fx-background-radius: 8px;
 
 }
+
+
+.border{
+-fx-border-color: linear-gradient(to bottom right,#451952,#AE445A);
+
+}
