@@ -106,7 +106,7 @@ public class RegistrationController implements Initializable {
 
 
                     CustomerImpl customerDAO = new CustomerImpl(); // Instantiate appropriately
-
+                    customerDAO.save(customer);
 
 
             }
