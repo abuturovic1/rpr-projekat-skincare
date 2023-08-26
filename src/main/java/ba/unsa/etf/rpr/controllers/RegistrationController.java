@@ -74,27 +74,6 @@ public class RegistrationController implements Initializable {
                     alert.showAndWait();
 
                 } else {
-/*
-
-                    ps = connection.prepareStatement(sql);
-
-                    ps.setInt(1, Integer.parseInt(reg_id.getText()));
-                    ps.setString(2, reg_username.getText());
-                    ps.setString(3, reg_pass.getText());
-                    ps.setString(4, reg_firstname.getText());
-                    ps.setString(5, reg_lastname.getText());
-                    ps.setString(6, reg_email.getText());
-                    ps.setString(7, reg_phoneN.getText());
-                    // rs = ps.executeUpdate();
-                    ps.executeUpdate();
-
-
-                    alert = new Alert(Alert.AlertType.INFORMATION);
-                    alert.setTitle("Information Message");
-                    alert.setHeaderText(null);
-                    alert.setContentText("Succesfully created a new account!");
-                    alert.showAndWait();
-                } */
 
                     Customer customer = new Customer();
                     customer.setUsername(reg_username.getText());
