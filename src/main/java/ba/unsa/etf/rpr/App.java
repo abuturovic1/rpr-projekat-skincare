@@ -1,9 +1,28 @@
 package ba.unsa.etf.rpr;
+import javafx.application.Application;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.stage.Stage;
+
 import java.sql.SQLException;
 import java.util.Scanner;
 import java.sql.*;
-public class App 
-{
+import javafx.scene.Scene;
+import javafx.stage.Stage;
+
+import static javafx.scene.control.PopupControl.USE_COMPUTED_SIZE;
+
+public class App { //extends Application
+   /* @Override
+    public void start(Stage primaryStage) throws Exception {
+        Parent root = FXMLLoader.load(getClass().getResource("/fxml/logIn.fxml"));
+        primaryStage.setTitle("Registration");
+        primaryStage.setScene(new Scene(root,USE_COMPUTED_SIZE,USE_COMPUTED_SIZE));
+        primaryStage.setResizable(false);
+        primaryStage.show();
+
+    }*/
+
     private static CustomerImpl customerdao;
     private static ReservationImpl reservationdao;
 
@@ -270,7 +289,7 @@ public class App
 
         }
     }
-
+//*/
 
 }
 

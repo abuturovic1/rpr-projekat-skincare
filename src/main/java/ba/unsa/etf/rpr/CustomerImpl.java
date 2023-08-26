@@ -6,7 +6,7 @@ import java.util.List;
 
 public class CustomerImpl implements CustomerDAO{
     private Connection connection;
-    private PreparedStatement ps_pretraziSve,ps_dodaj,noviIdUpit,ps_pretraga,ps_izmjena,ps_brisanje;
+    private PreparedStatement ps_pretraziSve,ps_dodaj,noviIdUpit,ps_pretraga,ps_izmjena,ps_brisanje,ps_dodaj_up;
     private static CustomerImpl instance = null;
 
     private CustomerImpl() throws SQLException{
@@ -20,6 +20,8 @@ public class CustomerImpl implements CustomerDAO{
         ps_pretraga = connection.prepareStatement("SELECT * FROM Customer WHERE customer_id = ? ");
         ps_izmjena = connection.prepareStatement("UPDATE Customer SET username = ?,password = ?,first_name = ?,last_name =?,email=?, phone_number = ? WHERE customer_id = ?");
         ps_brisanje = connection.prepareStatement("DELETE FROM Customer WHERE customer_id = ? ");
+        //dodaj username i pass u Customer:
+        ps_dodaj_up = connection.prepareStatement("INSERT INTO Customer (username,password) VALUES (?,?)");
     }
 
  public static CustomerImpl getInstance()throws SQLException{
@@ -79,7 +81,7 @@ public class CustomerImpl implements CustomerDAO{
             ps_dodaj.setString(2, customer.getUsername());
             ps_dodaj.setString(3, customer.getPassword());
             ps_dodaj.setString(4, customer.getFirstName());
-            ps_dodaj.setString(5, customer.getLastName());
+           ps_dodaj.setString(5, customer.getLastName());
             ps_dodaj.setString(6, customer.getEmail());
             ps_dodaj.setString(7, customer.getPhoneNumber());
             ps_dodaj.execute();
