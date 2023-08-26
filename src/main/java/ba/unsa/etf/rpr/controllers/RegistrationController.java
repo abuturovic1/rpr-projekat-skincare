@@ -109,13 +109,13 @@ public class RegistrationController implements Initializable {
     }
 
 
-    public void switchForm(javafx.event.ActionEvent actionEvent) {
+    /*public void switchForm(javafx.event.ActionEvent actionEvent) {
         if(actionEvent.getSource() == reg_loginBtn ){
             loginform.setVisible(true);
             signupform.setVisible(false);
 
         }
-    }
+    }*/
    /* @FXML
     public void initialize() throws SQLException{
         dao = CustomerImpl.getInstance();
