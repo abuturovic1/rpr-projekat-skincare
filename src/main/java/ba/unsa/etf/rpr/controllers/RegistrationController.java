@@ -83,7 +83,6 @@ public class RegistrationController implements Initializable {
                     customer.setEmail(reg_email.getText());
                     customer.setPhoneNumber(reg_phoneN.getText());
 
-
                     CustomerImpl customerDAO = new CustomerImpl();
                     customerDAO.save(customer);
                     alert = new Alert(Alert.AlertType.INFORMATION);
