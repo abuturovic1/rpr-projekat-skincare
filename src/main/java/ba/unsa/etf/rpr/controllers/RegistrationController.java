@@ -89,7 +89,7 @@ public class RegistrationController implements Initializable {
                     alert = new Alert(Alert.AlertType.INFORMATION);
                     alert.setTitle("Information Message");
                     alert.setHeaderText(null);
-                    alert.setContentText("Succesfull LogIn!");
+                    alert.setContentText("Succesfull Registration!");
                     alert.showAndWait();
 
 
