@@ -4,12 +4,14 @@ import ba.unsa.etf.rpr.Customer;
 import ba.unsa.etf.rpr.CustomerDAO;
 import ba.unsa.etf.rpr.CustomerImpl;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 
+import java.awt.event.ActionEvent;
 import java.net.URL;
 import java.sql.*;
 import java.util.ResourceBundle;
@@ -17,7 +19,8 @@ import java.util.ResourceBundle;
 public class RegistrationController implements Initializable {
 
     private CustomerImpl dao;
-
+    @FXML
+    private Button reg_loginBtn;
     @FXML
     private TextField reg_id;
     @FXML
@@ -40,6 +43,9 @@ public class RegistrationController implements Initializable {
 
     @FXML
     private AnchorPane signupform;
+
+    @FXML
+            private AnchorPane loginform;
 
     Connection connection;
     PreparedStatement ps;
@@ -100,6 +106,15 @@ public class RegistrationController implements Initializable {
 
 
 
+    }
+
+
+    public void switchForm(javafx.event.ActionEvent actionEvent) {
+        if(actionEvent.getSource() == reg_loginBtn ){
+            loginform.setVisible(true);
+            signupform.setVisible(false);
+
+        }
     }
    /* @FXML
     public void initialize() throws SQLException{
