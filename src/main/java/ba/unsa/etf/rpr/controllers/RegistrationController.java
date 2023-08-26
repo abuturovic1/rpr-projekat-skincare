@@ -1,5 +1,6 @@
 package ba.unsa.etf.rpr.controllers;
 
+import ba.unsa.etf.rpr.Customer;
 import ba.unsa.etf.rpr.CustomerDAO;
 import ba.unsa.etf.rpr.CustomerImpl;
 import javafx.fxml.FXML;
@@ -15,9 +16,10 @@ import java.util.ResourceBundle;
 
 public class RegistrationController implements Initializable {
 
-    //private CustomerImpl dao;
+    private CustomerImpl dao;
 
-
+    @FXML
+    private TextField reg_id;
     @FXML
     private TextField reg_email;
 
@@ -53,7 +55,8 @@ public class RegistrationController implements Initializable {
         String username="freedb_abuturovic1";
         String pass = System.getenv("DB_PASSWORD");
         connection = DriverManager.getConnection(url,username,pass);
-        String sql = " INSERT INTO Customer (username, password, first_name,last_name,email,phone_number) VALUES (?,?,?,?,?,?)";
+        String sql = " INSERT INTO Customer (customer_id,username, password, first_name,last_name,email,phone_number) VALUES (?,?,?,?,?,?,?)";
+
         try {
             Alert alert;
             if (reg_username.getText().isEmpty() || reg_pass.getText().isEmpty() || reg_firstname.getText().isEmpty() || reg_lastname.getText().isEmpty() || reg_email.getText().isEmpty() || reg_phoneN.getText().isEmpty()) {
@@ -71,28 +74,43 @@ public class RegistrationController implements Initializable {
                     alert.showAndWait();
 
                 } else {
+/*
 
                     ps = connection.prepareStatement(sql);
 
-                    ps.setString(1, reg_username.getText());
-                    ps.setString(2, reg_pass.getText());
-                    ps.setString(3, reg_firstname.getText());
-                    ps.setString(4, reg_lastname.getText());
-                    ps.setString(5, reg_email.getText());
-                    ps.setString(6, reg_phoneN.getText());
+                    ps.setInt(1, Integer.parseInt(reg_id.getText()));
+                    ps.setString(2, reg_username.getText());
+                    ps.setString(3, reg_pass.getText());
+                    ps.setString(4, reg_firstname.getText());
+                    ps.setString(5, reg_lastname.getText());
+                    ps.setString(6, reg_email.getText());
+                    ps.setString(7, reg_phoneN.getText());
                     // rs = ps.executeUpdate();
                     ps.executeUpdate();
+
 
                     alert = new Alert(Alert.AlertType.INFORMATION);
                     alert.setTitle("Information Message");
                     alert.setHeaderText(null);
                     alert.setContentText("Succesfully created a new account!");
                     alert.showAndWait();
-                }
+                } */
+
+                    Customer customer = new Customer();
+                    customer.setUsername(reg_username.getText());
+                    customer.setPassword(reg_pass.getText());
+                    customer.setFirstName(reg_firstname.getText());
+                    customer.setLastName(reg_lastname.getText());
+                    customer.setEmail(reg_email.getText());
+                    customer.setPhoneNumber(reg_phoneN.getText());
+
+
+                    CustomerImpl customerDAO = new CustomerImpl(); // Instantiate appropriately
+
 
 
             }
-        }catch(Exception e){
+        }}catch(Exception e){
             e.printStackTrace();
         }
 

@@ -12,12 +12,11 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.text.Font?>
 
-
-<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="497.0" prefWidth="720.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="497.0" prefWidth="720.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ba.unsa.etf.rpr.controllers.RegistrationController">
    <children>
       <BorderPane prefHeight="200.0" prefWidth="200.0">
          <left>
-            <AnchorPane prefHeight="498.0" prefWidth="345.0" styleClass="other-form" stylesheets="@../css/design.css" BorderPane.alignment="CENTER">
+            <AnchorPane fx:id="registrationForm" prefHeight="498.0" prefWidth="345.0" styleClass="other-form" stylesheets="@../css/design.css" BorderPane.alignment="CENTER">
                <children>
                   <Label layoutX="113.0" layoutY="231.0" text="SkinCare Pro" textFill="WHITE">
                      <font>
@@ -25,38 +24,59 @@
                      </font>
                   </Label>
                   <Label layoutX="113.0" layoutY="412.0" text="Already have an account? " textFill="WHITE" />
-                  <Button layoutX="155.0" layoutY="447.0" mnemonicParsing="false" styleClass="create-btn" stylesheets="@../css/design.css" text="Log In" />
+                  <Button fx:id="su_login" layoutX="155.0" layoutY="447.0" mnemonicParsing="false" styleClass="create-btn" stylesheets="@../css/design.css" text="Log In" />
                </children>
             </AnchorPane>
          </left>
          <right>
             <AnchorPane prefHeight="498.0" prefWidth="377.0" styleClass="white-form" stylesheets="@../css/design.css" BorderPane.alignment="CENTER">
                <children>
-                  <Label layoutX="101.0" layoutY="201.0" text="Register User Form">
+                  <Label layoutX="106.0" layoutY="60.0" text="Register User Form">
                      <font>
-                        <Font size="24.0" />
+                        <Font name="System Bold" size="24.0" />
                      </font>
                   </Label>
-                  <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="117.0" layoutY="51.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="108.0" fitWidth="92.0" layoutX="14.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../img/user.jpg" />
+                        <Image url="@../img/regUser1.jpg" />
                      </image>
                   </ImageView>
-                  <Button layoutX="151.0" layoutY="353.0" mnemonicParsing="false" styleClass="other-form" stylesheets="@../css/design.css" text="Sign Up!" textFill="WHITE">
+                  <Button fx:id="su_signup" layoutX="111.0" layoutY="383.0" mnemonicParsing="false" onAction="#registerAccount" prefHeight="48.0" prefWidth="156.0" styleClass="other-form" stylesheets="@../css/design.css" text="Sign Up!" textFill="WHITE">
                      <padding>
                         <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
                      </padding>
                   </Button>
-                  <TextField layoutX="114.0" layoutY="243.0" promptText="Username">
+                  <TextField fx:id="reg_username" layoutX="21.0" layoutY="183.0" promptText="Username">
                      <padding>
                         <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                      </padding>
                   </TextField>
-                  <PasswordField layoutX="114.0" layoutY="289.0" promptText="Password">
+                  <PasswordField fx:id="reg_pass" layoutX="200.0" layoutY="183.0" promptText="Password">
                      <padding>
                         <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                      </padding>
                   </PasswordField>
+                  <TextField fx:id="reg_firstname" layoutX="21.0" layoutY="249.0" promptText="First Name">
+                     <padding>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                     </padding>
+                  </TextField>
+                  <TextField fx:id="reg_lastname" layoutX="200.0" layoutY="249.0" promptText="Last Name">
+                     <padding>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                     </padding>
+                  </TextField>
+                  <TextField fx:id="reg_email" layoutX="21.0" layoutY="308.0" promptText="Email">
+                     <padding>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                     </padding>
+                  </TextField>
+                  <TextField fx:id="reg_phoneN" layoutX="200.0" layoutY="308.0" promptText="Phone Number">
+                     <padding>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                     </padding>
+                  </TextField>
+                  <TextField fx:id="reg_id" layoutX="14.0" layoutY="129.0" />
                </children>
             </AnchorPane>
          </right>
