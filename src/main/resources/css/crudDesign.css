@@ -7,5 +7,6 @@
 
 .border{
 -fx-border-color: linear-gradient(to bottom right,#451952,#AE445A);
+-fx-border-width: 1px;
 
 }
