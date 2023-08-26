@@ -76,7 +76,6 @@
                         <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                      </padding>
                   </TextField>
-                  <TextField fx:id="reg_id" layoutX="14.0" layoutY="129.0" />
                </children>
             </AnchorPane>
          </right>
