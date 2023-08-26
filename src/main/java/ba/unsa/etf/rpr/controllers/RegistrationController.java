@@ -55,7 +55,7 @@ public class RegistrationController implements Initializable {
         String username="freedb_abuturovic1";
         String pass = System.getenv("DB_PASSWORD");
         connection = DriverManager.getConnection(url,username,pass);
-        String sql = " INSERT INTO Customer (customer_id,username, password, first_name,last_name,email,phone_number) VALUES (?,?,?,?,?,?,?)";
+        //String sql = " INSERT INTO Customer (customer_id,username, password, first_name,last_name,email,phone_number) VALUES (?,?,?,?,?,?,?)";
 
         try {
             Alert alert;
@@ -107,10 +107,16 @@ public class RegistrationController implements Initializable {
 
                     CustomerImpl customerDAO = new CustomerImpl(); // Instantiate appropriately
                     customerDAO.save(customer);
+                    alert = new Alert(Alert.AlertType.INFORMATION);
+                    alert.setTitle("Information Message");
+                    alert.setHeaderText(null);
+                    alert.setContentText("Succesfull LogIn!");
+                    alert.showAndWait();
 
 
             }
-        }}catch(Exception e){
+        }
+        }catch(Exception e){
             e.printStackTrace();
         }
 
