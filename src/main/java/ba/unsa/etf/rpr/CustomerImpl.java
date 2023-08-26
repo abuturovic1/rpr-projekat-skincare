@@ -9,7 +9,7 @@ public class CustomerImpl implements CustomerDAO{
     private PreparedStatement ps_pretraziSve,ps_dodaj,noviIdUpit,ps_pretraga,ps_izmjena,ps_brisanje,ps_dodaj_up;
     private static CustomerImpl instance = null;
 
-    private CustomerImpl() throws SQLException{
+    public CustomerImpl() throws SQLException{
         String url = "jdbc:mysql://sql.freedb.tech:3306/freedb_rpr baza";
         String username="freedb_abuturovic1";
         String pass = System.getenv("DB_PASSWORD");
@@ -72,6 +72,13 @@ public class CustomerImpl implements CustomerDAO{
 
     @Override
     public void save(Customer customer) {
+        try {
+            Statement alterStatement = connection.createStatement();
+            String alterSql = "ALTER TABLE Customer MODIFY COLUMN customer_id INT AUTO_INCREMENT";
+            alterStatement.executeUpdate(alterSql);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
         try{
             ResultSet rs =  noviIdUpit.executeQuery();
             if(rs.next()) customer.setCustomerID(rs.getInt(1));
