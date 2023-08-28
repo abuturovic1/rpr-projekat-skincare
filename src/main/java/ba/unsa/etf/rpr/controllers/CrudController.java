@@ -1,6 +1,7 @@
 package ba.unsa.etf.rpr.controllers;
 import ba.unsa.etf.rpr.Customer;
 import ba.unsa.etf.rpr.CustomerImpl;
+import ba.unsa.etf.rpr.Reservation;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -13,7 +14,9 @@ import javafx.event.ActionEvent;
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.List;
 import java.util.ResourceBundle;
 
 public class CrudController implements Initializable{
@@ -61,17 +64,17 @@ public class CrudController implements Initializable{
 
     @FXML
     private TextField crud_username;
-
+    private CustomerImpl customerdao;
     Connection connection;
-    public ObservableList<Customer> customerList() throws SQLException {
-        ObservableList<Customer>rezultat = FXCollections.observableArrayList();
-        String url = "jdbc:mysql://sql.freedb.tech:3306/freedb_rpr baza";
-        String username="freedb_abuturovic1";
-        String pass = System.getenv("DB_PASSWORD");
-        connection = DriverManager.getConnection(url,username,pass);
+    private ObservableList<Customer> customersList = FXCollections.observableArrayList();
 
+    public void loadCustomers() throws SQLException {
+        CustomerImpl customerImpl = new CustomerImpl();
+        List<Customer> customers = customerImpl.getAll();
 
+        customersList.setAll(customers);
     }
+
 
 
 
