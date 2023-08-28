@@ -110,11 +110,11 @@
                                 <columns>
                                   <TableColumn fx:id="crud_col_id" prefWidth="73.60003662109375" text="CustomerID" />
                                   <TableColumn fx:id="crud_col_username" prefWidth="95.19998168945312" text="Username" />
-                                    <TableColumn fx:id="crud_col_firstname" minWidth="0.0" prefWidth="107.20001220703125" text="Password" />
-                                    <TableColumn fx:id="crud_col_lastname" prefWidth="113.60003662109375" text="First Name" />
-                                    <TableColumn fx:id="crud_col_email" prefWidth="123.199951171875" text="Last Name" />
-                                    <TableColumn fx:id="crud_col_phone" prefWidth="139.20001220703125" text="Email" />
-                                    <TableColumn fx:id="crud_col_phone1" prefWidth="185.60003662109375" text="Phone Number" />
+                                    <TableColumn fx:id="crud_col_pass" minWidth="0.0" prefWidth="107.20001220703125" text="Password" />
+                                    <TableColumn fx:id="crud_col_firstname" prefWidth="113.60003662109375" text="First Name" />
+                                    <TableColumn fx:id="crud_col_lastname" prefWidth="123.199951171875" text="Last Name" />
+                                    <TableColumn fx:id="crud_col_email" prefWidth="139.20001220703125" text="Email" />
+                                    <TableColumn fx:id="crud_col_phone" prefWidth="185.60003662109375" text="Phone Number" />
                                 </columns>
                               </TableView>
                            </children>

@@ -1,45 +1,44 @@
 package ba.unsa.etf.rpr.controllers;
 import ba.unsa.etf.rpr.Customer;
 import ba.unsa.etf.rpr.CustomerImpl;
-import ba.unsa.etf.rpr.Reservation;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.layout.AnchorPane;
-import javafx.event.ActionEvent;
 
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.DriverManager;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 import java.util.ResourceBundle;
 
 public class CrudController implements Initializable{
     @FXML
+    private TableColumn<?, ?> crud_col_pass;
+    @FXML
     private Button crud_addBtn;
+    @FXML
+    private TableView<Customer> crud_tableView;
+    @FXML
+    private TableColumn<Customer, String> crud_col_email;
 
     @FXML
-    private TableColumn<?, ?> crud_col_email;
+    private TableColumn<Customer, String> crud_col_firstname;
 
     @FXML
-    private TableColumn<?, ?> crud_col_firstname;
+    private TableColumn<Customer, String> crud_col_id;
 
     @FXML
-    private TableColumn<?, ?> crud_col_id;
+    private TableColumn<Customer, String> crud_col_lastname;
 
     @FXML
-    private TableColumn<?, ?> crud_col_lastname;
+    private TableColumn<Customer, String> crud_col_phone;
 
     @FXML
-    private TableColumn<?, ?> crud_col_phone;
-
-    @FXML
-    private TableColumn<?, ?> crud_col_username;
+    private TableColumn<Customer, String> crud_col_username;
 
     @FXML
     private TextField crud_customerID;
@@ -64,18 +63,36 @@ public class CrudController implements Initializable{
 
     @FXML
     private TextField crud_username;
-    private CustomerImpl customerdao;
+
     Connection connection;
     private ObservableList<Customer> customersList = FXCollections.observableArrayList();
 
-    public void loadCustomers() throws SQLException {
+    public ObservableList<Customer> loadCustomers() throws SQLException {
+        String url = "jdbc:mysql://sql.freedb.tech:3306/freedb_rpr baza";
+        String username="freedb_abuturovic1";
+        String pass = System.getenv("DB_PASSWORD");
+        connection = DriverManager.getConnection(url,username,pass);
         CustomerImpl customerImpl = new CustomerImpl();
         List<Customer> customers = customerImpl.getAll();
 
         customersList.setAll(customers);
+        return customersList;
     }
+    private ObservableList<Customer> customers;
+    public void showCustomers() throws SQLException {
+        customers = loadCustomers();
+        crud_col_id.setCellValueFactory(new PropertyValueFactory<>("customer_id"));
+        crud_col_username.setCellValueFactory(new PropertyValueFactory<>("username"));
+        crud_col_pass.setCellValueFactory(new PropertyValueFactory<>("password"));
+        crud_col_firstname.setCellValueFactory(new PropertyValueFactory<>("firstName"));
+        crud_col_lastname.setCellValueFactory(new PropertyValueFactory<>("lastName"));
+        crud_col_email.setCellValueFactory(new PropertyValueFactory<>("email"));
+        crud_col_phone.setCellValueFactory(new PropertyValueFactory<>("phoneNumber"));
+
+        crud_tableView.setItems(customers);
 
 
+    }
 
 
     @Override
