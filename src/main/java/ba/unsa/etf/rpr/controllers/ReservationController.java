@@ -4,10 +4,16 @@ import ba.unsa.etf.rpr.TreatmentImpl;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import java.sql.SQLException;
+import java.time.LocalTime;
 import java.util.List;
 import ba.unsa.etf.rpr.Reservation;
 
 public class ReservationController {
+    @FXML
+    private Spinner<Integer> hourSpinner;
+
+    @FXML
+    private Spinner<Integer> minuteSpinner;
     @FXML
     private TextField customerIDField;
 
@@ -43,7 +49,10 @@ public class ReservationController {
         String customerID = customerIDField.getText();
         String selectedTreatment = treatmentComboBox.getValue();
         String reservationDate = reservationDatepicker.getValue().toString();
-        String time = timeField.getText();
+       // String time = timeField.getText();
+        int hour = hourSpinner.getValue();
+        int minute = minuteSpinner.getValue();
+        LocalTime reservationTime = LocalTime.of(hour, minute);
         try {
             reservationDAO = ReservationImpl.getInstance();
             treatmentDAO = TreatmentImpl.getInstance();
@@ -56,7 +65,7 @@ public class ReservationController {
         reservation.setCustomerID(Integer.parseInt(customerID)); // Convert to int
         reservation.setTreatmentID(getTreatmentID(selectedTreatment)); // You need to implement this method
         reservation.setReservationDate(reservationDate);
-        reservation.setTime(time);
+        reservation.setTime(reservationTime);
         reservation.setStatus("Pending"); // Default status
         //String selectedTreatment = treatmentComboBox.getValue();
         int treatmentID = treatmentDAO.getTreatmentIDByName(selectedTreatment);
