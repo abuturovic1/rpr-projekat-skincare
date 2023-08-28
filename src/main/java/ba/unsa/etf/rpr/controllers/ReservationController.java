@@ -24,7 +24,7 @@ public class ReservationController {
     private Button reserveButton;
 
     private ReservationImpl reservationDAO;
-private TreatmentImpl treatmentDAO;
+    private TreatmentImpl treatmentDAO;
     @FXML
     public void initialize() {
         // Initialize ComboBox with treatment names
@@ -44,6 +44,12 @@ private TreatmentImpl treatmentDAO;
         String selectedTreatment = treatmentComboBox.getValue();
         String reservationDate = reservationDatepicker.getValue().toString();
         String time = timeField.getText();
+        try {
+            reservationDAO = ReservationImpl.getInstance();
+            treatmentDAO = TreatmentImpl.getInstance();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
 
         // Create a Reservation object and populate its properties
         Reservation reservation = new Reservation();
