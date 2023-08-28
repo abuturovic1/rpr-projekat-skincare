@@ -22,6 +22,8 @@ public class CustomerImpl implements CustomerDAO{
         ps_brisanje = connection.prepareStatement("DELETE FROM Customer WHERE customer_id = ? ");
         //dodaj username i pass u Customer:
         ps_dodaj_up = connection.prepareStatement("INSERT INTO Customer (username,password) VALUES (?,?)");
+        //check if username is taken
+
     }
 
  public static CustomerImpl getInstance()throws SQLException{
@@ -128,6 +130,13 @@ public class CustomerImpl implements CustomerDAO{
     public List<Customer> getbyUsername(String username) {
         return null;
     }
+    @Override
+    public int getCustomerIdByUsername(String username) {
+        int customerId = -1; // Default value indicating not found
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+        ResultSet resultSet = null;
+
 
 
 
