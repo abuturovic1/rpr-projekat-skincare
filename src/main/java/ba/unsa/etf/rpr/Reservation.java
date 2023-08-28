@@ -7,9 +7,9 @@ public class Reservation {  //javabean class
     private int reservationID,customerID,treatmentID;
    /* private Date reservationDate;
     private Time time;*/
-    private String status,reservationDate;
-    private LocalTime time;
-public Reservation(int reservationID,int customerID,int treatmentID,String reservationDate,LocalTime time,String status){
+    private String status,reservationDate,time;
+
+public Reservation(int reservationID,int customerID,int treatmentID,String reservationDate,String time,String status){
     this.reservationID=reservationID;
     this.customerID=customerID;
     this.treatmentID=treatmentID;
@@ -51,11 +51,11 @@ public Reservation(){}
         this.reservationDate = reservationDate;
     }
 
-    public LocalTime getTime() {
+    public String getTime() {
         return time;
     }
 
-    public void setTime(LocalTime time) {
+    public void setTime(String time) {
         this.time = time;
     }
 
