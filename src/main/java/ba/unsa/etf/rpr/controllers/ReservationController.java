@@ -66,9 +66,15 @@ public class ReservationController {
 
         // Save the reservation
         reservationDAO.save(reservation);
+        Alert alert;
+        alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Information Message");
+        alert.setHeaderText(null);
+        alert.setContentText("You successfully booked your treatment!");
+        alert.showAndWait();
 
         // Show a confirmation or message to the user
-        System.out.println("Reservation made for customer " + customerID);
+        //System.out.println("Reservation made for customer " + customerID);
     }
 
     private int getTreatmentID(String treatmentName) {
