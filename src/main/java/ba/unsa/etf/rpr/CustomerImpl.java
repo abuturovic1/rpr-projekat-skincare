@@ -6,7 +6,7 @@ import java.util.List;
 
 public class CustomerImpl implements CustomerDAO{
     private Connection connection;
-    private PreparedStatement ps_pretraziSve,ps_dodaj,noviIdUpit,ps_pretraga,ps_izmjena,ps_brisanje,ps_dodaj_up;
+    private PreparedStatement ps_pretraziSve,ps_dodaj,noviIdUpit,ps_pretraga,ps_izmjena,ps_brisanje,ps_dodaj_up,ps_userID;
     private static CustomerImpl instance = null;
 
     public CustomerImpl() throws SQLException{
@@ -22,7 +22,8 @@ public class CustomerImpl implements CustomerDAO{
         ps_brisanje = connection.prepareStatement("DELETE FROM Customer WHERE customer_id = ? ");
         //dodaj username i pass u Customer:
         ps_dodaj_up = connection.prepareStatement("INSERT INTO Customer (username,password) VALUES (?,?)");
-        //check if username is taken
+        //username i id relation
+        ps_userID = connection.prepareStatement("SELECT customer_id FROM Customer WHERE username = ?");
 
     }
 
@@ -133,10 +134,22 @@ public class CustomerImpl implements CustomerDAO{
     @Override
     public int getCustomerIdByUsername(String username) {
         int customerId = -1; // Default value indicating not found
-        Connection connection = null;
-        PreparedStatement preparedStatement = null;
         ResultSet resultSet = null;
 
+        try {
+            ps_userID.setString(1, username);
+            resultSet = ps_userID.executeQuery();
+
+            if (resultSet.next()) {
+                customerId = resultSet.getInt("customer_id");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+
+        }
+
+        return customerId;
+    }
 
 
 
