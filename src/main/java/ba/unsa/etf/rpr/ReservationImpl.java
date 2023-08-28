@@ -54,7 +54,7 @@ public class ReservationImpl implements ReservationDAO{
                 reservation.setCustomerID(rs.getInt("customer_id"));
                 reservation.setTreatmentID(rs.getInt("treatment_id"));
                 reservation.setReservationDate(rs.getString("reservation_date"));
-                reservation.setTime(LocalTime.parse(rs.getString("reservation_time")));
+                reservation.setTime(rs.getString("reservation_time"));
                 reservation.setStatus(rs.getString("status"));
 
                 reservations.add(reservation);
@@ -76,7 +76,7 @@ public class ReservationImpl implements ReservationDAO{
             ResultSet rs = sveRezervacije_ps.executeQuery();
             while(rs.next()){
                 reservations.add(new Reservation(rs.getInt(1),rs.getInt(2),rs.getInt(3),
-                        rs.getString(4), rs.getTime(5).toLocalTime(),
+                        rs.getString(4), rs.getString(5),
                         rs.getString(6)));
 
             }
