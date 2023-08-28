@@ -69,10 +69,8 @@ public class CrudController implements Initializable{
         String username="freedb_abuturovic1";
         String pass = System.getenv("DB_PASSWORD");
         connection = DriverManager.getConnection(url,username,pass);
-        CustomerImpl customerDAO = new CustomerImpl();
-        customerDAO.getAll();
 
-        return listData;
+
     }
 
 
