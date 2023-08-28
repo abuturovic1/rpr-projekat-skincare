@@ -1,4 +1,5 @@
 package ba.unsa.etf.rpr.controllers;
+import ba.unsa.etf.rpr.CustomerImpl;
 import ba.unsa.etf.rpr.ReservationImpl;
 import ba.unsa.etf.rpr.TreatmentImpl;
 import javafx.fxml.FXML;
@@ -27,6 +28,7 @@ public class ReservationController {
 
     private ReservationImpl reservationDAO;
     private TreatmentImpl treatmentDAO;
+    private CustomerImpl customerDAO;
     @FXML
     public void initialize() {
         // Initialize ComboBox with treatment names
@@ -42,7 +44,8 @@ public class ReservationController {
 
     @FXML
     public void reserveButtonClicked() {
-        String customerID = customerIDField.getText();
+       // String customerID = customerIDField.getText();
+        String username = customerIDField.getText();
         String selectedTreatment = treatmentComboBox.getValue();
         String reservationDate = reservationDatepicker.getValue().toString();
        String time = timeField.getText();
@@ -53,6 +56,7 @@ public class ReservationController {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+        int customerID = customerDAO.getCustomerIdByUsername(username);
         if (reservationDAO.isReservationDateTaken(reservationDate)) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Error");
@@ -90,6 +94,7 @@ public class ReservationController {
         // You might need to call TreatmentSQLImplementation to retrieve the treatment ID by name
         return 0; // Placeholder value, replace with actual logic
     }
+
 
 }
 
