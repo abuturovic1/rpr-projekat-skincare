@@ -132,4 +132,21 @@ public class ReservationImpl implements ReservationDAO{
         }
 
     }
+    @Override
+    public boolean isReservationDateTaken(String reservationDate) {
+        try {
+            String query = "SELECT COUNT(*) FROM Reservation WHERE reservation_date = ?";
+            PreparedStatement preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setString(1, reservationDate);
+
+            ResultSet resultSet = preparedStatement.executeQuery();
+            if (resultSet.next()) {
+                int count = resultSet.getInt(1);
+                return count > 0; // If count > 0, the date is taken
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return false; // Default to date not taken
+    }
 }
