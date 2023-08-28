@@ -12,5 +12,6 @@ public interface CustomerDAO extends Dao<Customer> {
 List<Customer>getbyUsername(String username);
     List<Customer> getAll();
 
+
     }
 
