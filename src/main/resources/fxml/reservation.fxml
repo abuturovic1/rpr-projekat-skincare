@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" styleClass="other-form" stylesheets="@../css/design.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ba.unsa.etf.rpr.controllers.ReservationController">
+    <children>
+        <Label layoutX="46.0" layoutY="48.0" text="RESERVATION FORM" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font></Label>
+        <TextField fx:id="customerIDField" layoutX="150.0" layoutY="95.0" prefWidth="200.0" />
+        <ComboBox fx:id="treatmentComboBox" layoutX="150.0" layoutY="145.0" prefWidth="200.0" />
+        <DatePicker fx:id="reservationDatepicker" layoutX="150.0" layoutY="195.0" />
+        <TextField fx:id="timeField" layoutX="150.0" layoutY="245.0" prefWidth="200.0" />
+        <Button fx:id="reserveButton" layoutX="150.0" layoutY="300.0" onAction="#reserveButtonClicked" text="Reserve" />
+      <Label layoutX="42.0" layoutY="99.0" text="Customer ID:" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Label>
+      <Label layoutX="42.0" layoutY="149.0" text="Treatment:" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Label>
+      <Label layoutX="42.0" layoutY="199.0" text="Date:" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Label>
+      <Label layoutX="46.0" layoutY="249.0" text="Time:" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Label>
+    </children>
+</AnchorPane>
