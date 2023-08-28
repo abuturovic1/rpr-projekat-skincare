@@ -53,6 +53,15 @@ public class ReservationController {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+        if (reservationDAO.isReservationDateTaken(reservationDate)) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setHeaderText(null);
+            alert.setContentText("The selected date is already booked. Please choose another date.");
+            alert.showAndWait();
+            return;
+        }
+
 
         // Create a Reservation object and populate its properties
         Reservation reservation = new Reservation();
