@@ -24,6 +24,19 @@ public class ReservationController {
 
     private ReservationImpl reservationDAO;
 
+    @FXML
+    public void initialize() {
+        // Initialize ComboBox with treatment names
+        treatmentComboBox.getItems().addAll("Treatment A", "Treatment B", "Treatment C");
+
+        // Initialize the reservationDAO
+        try {
+            reservationDAO = ReservationImpl.getInstance();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
 
 }
 
