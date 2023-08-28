@@ -13,5 +13,6 @@ List<Customer>getbyUsername(String username);
     List<Customer> getAll();
 
 
-    }
+    int getCustomerIdByUsername(String username);
+}
 
