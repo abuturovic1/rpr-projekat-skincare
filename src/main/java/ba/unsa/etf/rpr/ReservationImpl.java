@@ -1,6 +1,7 @@
 package ba.unsa.etf.rpr;
 
 import java.sql.*;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -53,7 +54,7 @@ public class ReservationImpl implements ReservationDAO{
                 reservation.setCustomerID(rs.getInt("customer_id"));
                 reservation.setTreatmentID(rs.getInt("treatment_id"));
                 reservation.setReservationDate(rs.getString("reservation_date"));
-                reservation.setTime(rs.getString("reservation_time"));
+                reservation.setTime(LocalTime.parse(rs.getString("reservation_time")));
                 reservation.setStatus(rs.getString("status"));
 
                 reservations.add(reservation);
@@ -75,7 +76,7 @@ public class ReservationImpl implements ReservationDAO{
             ResultSet rs = sveRezervacije_ps.executeQuery();
             while(rs.next()){
                 reservations.add(new Reservation(rs.getInt(1),rs.getInt(2),rs.getInt(3),
-                        rs.getString(4),rs.getString(5),
+                        rs.getString(4), rs.getTime(5).toLocalTime(),
                         rs.getString(6)));
 
             }
@@ -96,7 +97,7 @@ public class ReservationImpl implements ReservationDAO{
             dodaj_ps.setInt(2, reservation.getCustomerID());
             dodaj_ps.setInt(3, reservation.getTreatmentID());
             dodaj_ps.setString(4, reservation.getReservationDate());
-            dodaj_ps.setString(5, reservation.getTime());
+            dodaj_ps.setString(5, String.valueOf(reservation.getTime()));
             dodaj_ps.setString(6, reservation.getStatus());
 
             dodaj_ps.execute();
