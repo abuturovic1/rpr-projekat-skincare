@@ -1,7 +1,6 @@
 package ba.unsa.etf.rpr;
 
 import java.sql.*;
-import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -135,11 +134,10 @@ public class ReservationImpl implements ReservationDAO{
     @Override
     public boolean isReservationDateTaken(String reservationDate) {
         try {
-            String query = "SELECT COUNT(*) FROM Reservation WHERE reservation_date = ?";
-            PreparedStatement preparedStatement = connection.prepareStatement(query);
-            preparedStatement.setString(1, reservationDate);
 
-            ResultSet resultSet = preparedStatement.executeQuery();
+            datum_ps.setString(1, reservationDate);
+
+            ResultSet resultSet = datum_ps.executeQuery();
             if (resultSet.next()) {
                 int count = resultSet.getInt(1);
                 return count > 0; // If count > 0, the date is taken
