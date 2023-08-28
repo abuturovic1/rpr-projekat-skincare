@@ -123,6 +123,11 @@ try{
         }
         return -1; // Treatment not found
     }
+
+    @Override
+    public List<Treatment> getbyTreatmentName(String name) {
+        return null;
+    }
    /* @Override
     public List<Treatment> getbyTreatmentName(String name) {
         return null;
