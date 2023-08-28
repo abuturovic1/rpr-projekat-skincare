@@ -8,7 +8,7 @@ import java.util.List;
 
 public class ReservationImpl implements ReservationDAO{
     private Connection connection;
-    PreparedStatement pretraga_ps,dodaj_ps,izmijeni_ps,sveRezervacije_ps,brisanje_ps,pretragaK_ps,noviId;
+    PreparedStatement pretraga_ps,dodaj_ps,izmijeni_ps,sveRezervacije_ps,brisanje_ps,pretragaK_ps,noviId,datum_ps;
 
     private static ReservationImpl instance = null;
     public static ReservationImpl getInstance()throws SQLException{
@@ -35,7 +35,7 @@ public class ReservationImpl implements ReservationDAO{
         pretragaK_ps=connection.prepareStatement("SELECT * FROM Reservation WHERE customer_id = ?");
         noviId = connection.prepareStatement("SELECT MAX(reservation_id)+1 FROM Reservation");
         dodaj_ps = connection.prepareStatement("INSERT INTO Reservation VALUES (?,?,?,?,?,?)");
-
+        datum_ps = connection.prepareStatement("SELECT COUNT(*) FROM Reservation WHERE reservation_date = ?");
     }
 /*    @Override
     public ArrayList<Reservation> get(int id) {
