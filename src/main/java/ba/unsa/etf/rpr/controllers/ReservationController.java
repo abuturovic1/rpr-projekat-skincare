@@ -37,6 +37,33 @@ public class ReservationController {
         }
     }
 
+    @FXML
+    public void reserveButtonClicked() {
+        String customerID = customerIDField.getText();
+        String selectedTreatment = treatmentComboBox.getValue();
+        String reservationDate = reservationDatepicker.getValue().toString();
+        String time = timeField.getText();
+
+        // Create a Reservation object and populate its properties
+        Reservation reservation = new Reservation();
+        reservation.setCustomerID(Integer.parseInt(customerID)); // Convert to int
+        reservation.setTreatmentID(getTreatmentID(selectedTreatment)); // You need to implement this method
+        reservation.setReservationDate(reservationDate);
+        reservation.setTime(time);
+        reservation.setStatus("Pending"); // Default status
+
+        // Save the reservation
+        reservationDAO.save(reservation);
+
+        // Show a confirmation or message to the user
+        System.out.println("Reservation made for customer " + customerID);
+    }
+
+    private int getTreatmentID(String treatmentName) {
+        // You might need to call TreatmentSQLImplementation to retrieve the treatment ID by name
+        return 0; // Placeholder value, replace with actual logic
+    }
+}
 
 }
 
