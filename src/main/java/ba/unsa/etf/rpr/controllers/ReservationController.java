@@ -53,6 +53,7 @@ public class ReservationController {
         try {
             reservationDAO = ReservationImpl.getInstance();
             treatmentDAO = TreatmentImpl.getInstance();
+            customerDAO = CustomerImpl.getInstance();
         } catch (SQLException e) {
             e.printStackTrace();
         }
