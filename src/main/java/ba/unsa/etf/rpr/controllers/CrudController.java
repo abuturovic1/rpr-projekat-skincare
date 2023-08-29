@@ -1,6 +1,7 @@
 package ba.unsa.etf.rpr.controllers;
 import ba.unsa.etf.rpr.Customer;
 import ba.unsa.etf.rpr.CustomerImpl;
+import ba.unsa.etf.rpr.ReservationImpl;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -106,6 +107,11 @@ public class CrudController implements Initializable{
         crud_col_lastname.setCellValueFactory(new PropertyValueFactory<>("lastName"));
         crud_col_email.setCellValueFactory(new PropertyValueFactory<>("email"));
         crud_col_phone.setCellValueFactory(new PropertyValueFactory<>("phoneNumber"));
+        try {
+            customerdao = CustomerImpl.getInstance();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
 
