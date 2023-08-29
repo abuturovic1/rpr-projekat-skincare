@@ -10,8 +10,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
-
-import java.awt.event.ActionEvent;
+import javafx.event.ActionEvent;
 import java.net.URL;
 import java.sql.*;
 import java.util.ResourceBundle;
@@ -20,7 +19,7 @@ public class RegistrationController implements Initializable {
 
     private CustomerImpl dao;
     @FXML
-    private Button reg_loginBtn;
+    private Button switchToLoginButton;
     @FXML
     private TextField reg_id;
     @FXML
@@ -49,6 +48,7 @@ public class RegistrationController implements Initializable {
 
     Connection connection;
     PreparedStatement ps;
+    private Runnable switchToLoginAction;
 
 
     @Override
@@ -107,15 +107,18 @@ public class RegistrationController implements Initializable {
 
 
     }
-
-
-    /*public void switchForm(javafx.event.ActionEvent actionEvent) {
-        if(actionEvent.getSource() == reg_loginBtn ){
-            loginform.setVisible(true);
-            signupform.setVisible(false);
-
+    @FXML
+    private void switchToLogin(ActionEvent event) {
+        if (switchToLoginAction != null) {
+            switchToLoginAction.run();
         }
-    }*/
+    }
+    public void setSwitchToLoginAction(Runnable action) {
+        switchToLoginAction = action;
+    }
+
+
+
    /* @FXML
     public void initialize() throws SQLException{
         dao = CustomerImpl.getInstance();
