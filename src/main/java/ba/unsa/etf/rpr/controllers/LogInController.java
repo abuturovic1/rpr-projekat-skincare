@@ -1,6 +1,6 @@
 package ba.unsa.etf.rpr.controllers;
 
-import com.sun.javafx.tk.quantum.EmbeddedStage;
+
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -84,20 +84,7 @@ public class LogInController implements Initializable {
             e.printStackTrace();
         }
     }
-    @FXML
-    private void switchToRegistration(ActionEvent event) throws IOException {
-        // Load the registration scene
-        FXMLLoader registrationLoader = new FXMLLoader(getClass().getResource("reg.fxml"));
-        Parent registrationRoot = registrationLoader.load();
-        RegistrationController registrationController = registrationLoader.getController();
 
-        registrationController.setSwitchToLoginAction(() -> {
-            primaryStage.getScene().setRoot(loginRoot); // Assuming you have access to the primaryStage
-            primaryStage.setTitle("Login Form");
-        });
 
-        // Switch to the registration scene
-        primaryStage.setScene(new Scene(registrationRoot));
-        primaryStage.setTitle("Registration Form");
-    }
+
 }
