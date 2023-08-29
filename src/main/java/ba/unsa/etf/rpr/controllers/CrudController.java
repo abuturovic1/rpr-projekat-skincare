@@ -127,4 +127,22 @@ public class CrudController implements Initializable{
         customerdao.save(newCustomer);
 
     }
+
+    public void updateCustomer(ActionEvent event) {
+        Customer selectedCustomer = crud_tableView.getSelectionModel().getSelectedItem();
+
+        if (selectedCustomer != null) {
+            // Update the selected customer's information
+            selectedCustomer.setUsername(crud_username.getText());
+            selectedCustomer.setFirstName(crud_firstname.getText());
+            selectedCustomer.setLastName(crud_lastname.getText());
+            selectedCustomer.setEmail(crud_email.getText());
+            selectedCustomer.setPhoneNumber(crud_phone.getText());
+
+            // Call the DAO method to update the customer
+            customerdao.update(selectedCustomer);
+
+        }
+    }
+
 }
