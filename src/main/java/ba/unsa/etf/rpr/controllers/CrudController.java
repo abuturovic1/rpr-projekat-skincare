@@ -116,19 +116,12 @@ public class CrudController implements Initializable{
     }
 
 
-    public void addCustomer(ActionEvent event) {
-        Customer newCustomer = new Customer(crud_customerID.getText(),
-                crud_username.getText(),
-                crud_firstname.getText(),
-                crud_lastname.getText(),
-                crud_email.getText(),
-                crud_phone.getText()
-        );
-        customerdao.save(newCustomer);
 
-    }
 
-    public void updateCustomer(ActionEvent event) {
+
+
+
+    public void updateCustomer(javafx.event.ActionEvent actionEvent) {
         Customer selectedCustomer = crud_tableView.getSelectionModel().getSelectedItem();
 
         if (selectedCustomer != null) {
@@ -143,6 +136,12 @@ public class CrudController implements Initializable{
             customerdao.update(selectedCustomer);
 
         }
+
     }
 
+
+    public void deleteCustomer(javafx.event.ActionEvent actionEvent) {
+        Customer selectedCustomer = crud_tableView.getSelectionModel().getSelectedItem();
+        if(selectedCustomer!=null) customerdao.delete(selectedCustomer);
+    }
 }
