@@ -19,7 +19,8 @@ public class LogInController implements Initializable {
 
     @FXML
     private Button si_logInBtn;
-
+    @FXML
+    private Button switchToRegistrationButton;
     @FXML
     private PasswordField si_password;
 
@@ -33,6 +34,7 @@ public class LogInController implements Initializable {
     private Connection connection;
     private PreparedStatement ps;
     private ResultSet rs;
+    private Runnable switchToRegistrationAction;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -77,5 +79,14 @@ public class LogInController implements Initializable {
     }} catch(Exception e){
             e.printStackTrace();
         }
+    }
+    @FXML
+    private void switchToRegistration(ActionEvent event) {
+        if (switchToRegistrationAction != null) {
+            switchToRegistrationAction.run();
+        }
+    }
+    public void setSwitchToRegistrationAction(Runnable action) {
+        switchToRegistrationAction = action;
     }
 }
