@@ -4,6 +4,9 @@ import ba.unsa.etf.rpr.Customer;
 import ba.unsa.etf.rpr.CustomerDAO;
 import ba.unsa.etf.rpr.CustomerImpl;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
@@ -11,6 +14,8 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.event.ActionEvent;
+
+import java.io.IOException;
 import java.net.URL;
 import java.sql.*;
 import java.util.ResourceBundle;
@@ -41,7 +46,7 @@ public class RegistrationController implements Initializable {
     private TextField reg_username;
 
     @FXML
-    private AnchorPane signupform;
+    private AnchorPane registrationForm;
 
     @FXML
             private AnchorPane loginform;
@@ -107,15 +112,8 @@ public class RegistrationController implements Initializable {
 
 
     }
-    @FXML
-    private void switchToLogin(ActionEvent event) {
-        if (switchToLoginAction != null) {
-            switchToLoginAction.run();
-        }
-    }
-    public void setSwitchToLoginAction(Runnable action) {
-        switchToLoginAction = action;
-    }
+
+
 
 
 
