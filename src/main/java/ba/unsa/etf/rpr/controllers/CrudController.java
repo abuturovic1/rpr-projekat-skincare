@@ -99,6 +99,13 @@ public class CrudController implements Initializable{
 
 
 */
+    public CrudController(){
+        try {
+            customerdao = CustomerImpl.getInstance();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         crud_col_id.setCellValueFactory(new PropertyValueFactory<>("customerId"));
@@ -108,11 +115,8 @@ public class CrudController implements Initializable{
         crud_col_lastname.setCellValueFactory(new PropertyValueFactory<>("lastName"));
         crud_col_email.setCellValueFactory(new PropertyValueFactory<>("email"));
         crud_col_phone.setCellValueFactory(new PropertyValueFactory<>("phoneNumber"));
-        try {
-            customerdao = CustomerImpl.getInstance();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+
+        loadCustomerData();
     }
 
 
