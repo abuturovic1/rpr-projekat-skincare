@@ -1,15 +1,27 @@
 package ba.unsa.etf.rpr;
 
+import java.io.IOException;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Properties;
 
 public class CustomerImpl implements CustomerDAO{
+    Properties properties = new Properties();
     private Connection connection;
     private PreparedStatement ps_pretraziSve,ps_dodaj,noviIdUpit,ps_pretraga,ps_izmjena,ps_brisanje,ps_dodaj_up,ps_userID;
     private static CustomerImpl instance = null;
 
     public CustomerImpl() throws SQLException{
+        try{
+            properties.load(ClassLoader.getSystemResource("application.properties").openStream());
+            String url = properties.getProperty("db.url");
+            String username = properties.getProperty("db.username");
+            String pass = properties.getProperty("db.password");
+            connection = DriverManager.getConnection(url,username,pass);
+        }catch(IOException e){
+            e.printStackTrace();
+        }
         String url = "jdbc:mysql://sql.freedb.tech:3306/freedb_rpr baza";
         String username="freedb_abuturovic1";
         String pass = System.getenv("DB_PASSWORD");
