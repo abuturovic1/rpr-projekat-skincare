@@ -24,7 +24,7 @@
                      </font>
                   </Label>
                   <Label layoutX="113.0" layoutY="412.0" text="Already have an account? " textFill="WHITE" />
-                  <Button fx:id="reg_loginBtn" layoutX="155.0" layoutY="447.0" mnemonicParsing="false" onAction="#switchForm" styleClass="create-btn" stylesheets="@../css/design.css" text="Log In" />
+                  <Button fx:id="switchToLoginButton" layoutX="155.0" layoutY="447.0" mnemonicParsing="false" onAction="#switchToLogin" styleClass="create-btn" stylesheets="@../css/design.css" text="Log In" />
                </children>
             </AnchorPane>
          </left>
