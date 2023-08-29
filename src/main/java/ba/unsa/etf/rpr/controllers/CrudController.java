@@ -63,6 +63,7 @@ public class CrudController implements Initializable{
 
     @FXML
     private TextField crud_username;
+    private CustomerImpl customerdao;
 /*
     Connection connection;
     private ObservableList<Customer> customersList = FXCollections.observableArrayList();
@@ -98,7 +99,13 @@ public class CrudController implements Initializable{
 */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-
+        crud_col_id.setCellValueFactory(new PropertyValueFactory<>("customerId"));
+        crud_col_username.setCellValueFactory(new PropertyValueFactory<>("username"));
+        crud_col_pass.setCellValueFactory(new PropertyValueFactory<>("password"));
+        crud_col_firstname.setCellValueFactory(new PropertyValueFactory<>("firstName"));
+        crud_col_lastname.setCellValueFactory(new PropertyValueFactory<>("lastName"));
+        crud_col_email.setCellValueFactory(new PropertyValueFactory<>("email"));
+        crud_col_phone.setCellValueFactory(new PropertyValueFactory<>("phoneNumber"));
     }
 
 
