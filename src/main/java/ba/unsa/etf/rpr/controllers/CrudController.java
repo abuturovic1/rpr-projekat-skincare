@@ -17,7 +17,7 @@ import java.util.ResourceBundle;
 
 public class CrudController implements Initializable{
     @FXML
-    private TableColumn<?, ?> crud_col_pass;
+    private TableColumn<Customer, String> crud_col_pass;
     @FXML
     private Button crud_addBtn;
     @FXML
@@ -63,7 +63,7 @@ public class CrudController implements Initializable{
 
     @FXML
     private TextField crud_username;
-
+/*
     Connection connection;
     private ObservableList<Customer> customersList = FXCollections.observableArrayList();
 
@@ -95,8 +95,12 @@ public class CrudController implements Initializable{
     }
 
 
+*/
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
     }
+
+
+
 }
