@@ -1,8 +1,11 @@
 package ba.unsa.etf.rpr;
 
+import java.io.IOException;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Properties;
+
 import ba.unsa.etf.rpr.exceptions.ReservationException;
 
 public class ReservationImpl implements ReservationDAO{
@@ -21,11 +24,17 @@ public class ReservationImpl implements ReservationDAO{
         instance=null;
     }
     private ReservationImpl() throws SQLException{
+        Properties properties = new Properties();
 
-        String url = "jdbc:mysql://sql.freedb.tech:3306/freedb_rpr baza";
-        String username="freedb_abuturovic1";
-        String pass = System.getenv("DB_PASSWORD");
-        connection = DriverManager.getConnection(url,username,pass);
+        try{
+            properties.load(ClassLoader.getSystemResource("application.properties").openStream());
+            String url = properties.getProperty("db.url");
+            String username = properties.getProperty("db.username");
+            String pass = properties.getProperty("db.password");
+            connection = DriverManager.getConnection(url,username,pass);
+        }catch(IOException e){
+            e.printStackTrace();
+        }
         pretraga_ps = connection.prepareStatement("SELECT * FROM Reservation WHERE reservation_id = ? ");
         sveRezervacije_ps = connection.prepareStatement("SELECT * FROM Reservation");
         izmijeni_ps = connection.prepareStatement("UPDATE Reservation SET customer_id=?, treatment_id = ?, reservation_date = ? , reservation_time = ? , status = ? WHERE reservation_id = ? ");
