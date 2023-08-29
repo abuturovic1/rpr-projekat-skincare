@@ -66,15 +66,7 @@
                                     <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                                  </padding>
                               </TextField>
-                              <Button fx:id="crud_deleteBtn" layoutX="110.0" layoutY="519.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="86.0" styleClass="other-form" stylesheets="@../css/crudDesign.css" text="DELETE" textFill="WHITE">
-                                 <padding>
-                                    <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                                 </padding>
-                                 <font>
-                                    <Font name="System Bold" size="12.0" />
-                                 </font>
-                              </Button>
-                              <Button fx:id="crud_addBtn" layoutX="43.0" layoutY="477.0" mnemonicParsing="false" onAction="#addCustomer" prefHeight="38.0" prefWidth="87.0" styleClass="other-form" stylesheets="@../css/crudDesign.css" text="ADD" textFill="WHITE">
+                              <Button fx:id="crud_deleteBtn" layoutX="33.0" layoutY="477.0" mnemonicParsing="false" onAction="#deleteCustomer" prefHeight="38.0" prefWidth="86.0" styleClass="other-form" stylesheets="@../css/crudDesign.css" text="DELETE" textFill="WHITE">
                                  <padding>
                                     <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                                  </padding>
