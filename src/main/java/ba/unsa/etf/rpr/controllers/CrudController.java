@@ -134,6 +134,7 @@ public class CrudController implements Initializable{
 
             // Call the DAO method to update the customer
             customerdao.update(selectedCustomer);
+            loadCustomerData();
 
         }
 
@@ -143,5 +144,14 @@ public class CrudController implements Initializable{
     public void deleteCustomer(javafx.event.ActionEvent actionEvent) {
         Customer selectedCustomer = crud_tableView.getSelectionModel().getSelectedItem();
         if(selectedCustomer!=null) customerdao.delete(selectedCustomer);
+        loadCustomerData();
+    }
+    private void loadCustomerData() {
+        // Call the DAO method to get all customers
+        List<Customer> customers = customerdao.getAll();
+
+        // Clear the TableView and add the loaded customers
+        crud_tableView.getItems().clear();
+        crud_tableView.getItems().addAll(customers);
     }
 }
