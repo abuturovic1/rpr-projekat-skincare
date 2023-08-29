@@ -6,12 +6,10 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.PasswordField;
+import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
 import javafx.event.ActionEvent;
-import javafx.scene.control.Button;
-import javafx.scene.control.TextField;
+import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
@@ -34,6 +32,8 @@ public class LogInController implements Initializable {
 
     @FXML
     private TextField si_username;
+    @FXML
+    private Hyperlink su_hyperlink;
 
 
     private Connection connection;
@@ -84,6 +84,11 @@ public class LogInController implements Initializable {
             e.printStackTrace();
         }
     }
+public void switchToSignup(ActionEvent event){
+    Stage stage = (Stage)su_hyperlink.getScene().getWindow();
+    stage.close();
+
+}
 
 
 
