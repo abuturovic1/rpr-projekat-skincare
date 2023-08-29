@@ -7,13 +7,11 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
+import javafx.scene.control.*;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Alert;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.event.ActionEvent;
+import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
@@ -23,6 +21,8 @@ import java.util.ResourceBundle;
 public class RegistrationController implements Initializable {
 
     private CustomerImpl dao;
+    @FXML
+    private Hyperlink hyperlinkID;
     @FXML
     private Button switchToLoginButton;
     @FXML
@@ -110,6 +110,11 @@ public class RegistrationController implements Initializable {
         }
 
 
+
+    }
+    public void switchToLogin(ActionEvent event){
+        Stage stage = (Stage)hyperlinkID.getScene().getWindow();
+        stage.close();
 
     }
 
