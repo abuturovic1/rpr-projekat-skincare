@@ -3,9 +3,10 @@ package ba.unsa.etf.rpr;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
-
+import ba.unsa.etf.rpr.exceptions.ReservationException;
 
 public class ReservationImpl implements ReservationDAO{
+
     private Connection connection;
     PreparedStatement pretraga_ps,dodaj_ps,izmijeni_ps,sveRezervacije_ps,brisanje_ps,pretragaK_ps,noviId,datum_ps;
 
@@ -42,7 +43,7 @@ public class ReservationImpl implements ReservationDAO{
         return null;
     }*/
     @Override
-    public ArrayList<Reservation> get(int customerID) {
+    public ArrayList<Reservation> get(int customerID) throws ReservationException{
         ArrayList<Reservation> reservations = new ArrayList<>();
         try{
            pretragaK_ps.setInt(1,customerID);
@@ -59,16 +60,16 @@ public class ReservationImpl implements ReservationDAO{
                 reservations.add(reservation);
                 //reservations.add(new Reservation(rs.getInt(1),rs.getInt(2),rs.getInt(3),rs.getDate(4),rs.getTime(5),rs.getString(6)));
             }
-            //System.out.println("Uspjesna konekcija");
+
         }catch (SQLException e) {
-            throw new RuntimeException(e);
-            //System.out.println("Neuspjesna konekcija"+e.getMessage());
+            throw new ReservationException("Neuspjesno dobijanje informacija o rezervaciji unošenjem customerID",e);
+
         }
 
         return reservations;
     }
     @Override
-    public List<Reservation> getAll() {
+    public List<Reservation> getAll() throws ReservationException{
 
         ArrayList<Reservation>reservations = new ArrayList<Reservation>();
         try{
@@ -80,7 +81,7 @@ public class ReservationImpl implements ReservationDAO{
 
             }
         } catch (SQLException e) {
-            throw new RuntimeException(e);
+            throw new ReservationException("Neuspjesno dobijanje svih rezervacija",e);
         }
         return reservations;
     }
