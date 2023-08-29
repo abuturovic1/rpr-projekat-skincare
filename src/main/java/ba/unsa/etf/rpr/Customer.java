@@ -40,6 +40,9 @@ public Customer(int customerID,String username,String password,String firstName,
     }*/
 
     public Customer(){}
+
+
+
     public String getUsername() {
         return username;
     }

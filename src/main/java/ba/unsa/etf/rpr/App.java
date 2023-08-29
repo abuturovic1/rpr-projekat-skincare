@@ -1,4 +1,6 @@
 package ba.unsa.etf.rpr;
+import ba.unsa.etf.rpr.controllers.LogInController;
+import ba.unsa.etf.rpr.controllers.RegistrationController;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -12,7 +14,10 @@ import javafx.stage.Stage;
 
 import static javafx.scene.control.PopupControl.USE_COMPUTED_SIZE;
 
-public class App extends Application{ //extends Application
+public class App extends Application{
+
+
+
     @Override
     public void start(Stage primaryStage) throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource("/fxml/reg.fxml"));
@@ -22,6 +27,7 @@ public class App extends Application{ //extends Application
         primaryStage.show();
 
     }
+
 /*
     private static CustomerImpl customerdao;
     private static ReservationImpl reservationdao;

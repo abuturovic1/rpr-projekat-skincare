@@ -19,7 +19,7 @@
         <DatePicker fx:id="reservationDatepicker" layoutX="150.0" layoutY="195.0" />
         <TextField fx:id="timeField" layoutX="150.0" layoutY="245.0" prefWidth="200.0" />
         <Button fx:id="reserveButton" layoutX="150.0" layoutY="300.0" onAction="#reserveButtonClicked" text="Reserve" />
-      <Label layoutX="42.0" layoutY="99.0" text="Customer ID:" textFill="WHITE">
+      <Label layoutX="42.0" layoutY="99.0" text="Username:" textFill="WHITE">
          <font>
             <Font name="System Bold" size="12.0" />
          </font>

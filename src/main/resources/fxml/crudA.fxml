@@ -6,9 +6,59 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="fxml.CrudA"
-            prefHeight="400.0" prefWidth="600.0">
 
+<?import javafx.scene.control.cell.PropertyValueFactory?>
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ba.unsa.etf.rpr.controllers.CrudAController">
+    <VBox alignment="CENTER" spacing="10">
+        <TableView fx:id="crud_tableView" prefHeight="200.0" prefWidth="600.0">
+            <columns>
+                <TableColumn fx:id="crud_col_id" text="ID">
+                    <cellValueFactory>
+                        <PropertyValueFactory property="customerId" />
+                    </cellValueFactory>
+                </TableColumn>
+                <TableColumn fx:id="crud_col_username" text="Username">
+                    <cellValueFactory>
+                        <PropertyValueFactory property="username" />
+                    </cellValueFactory>
+                </TableColumn>
+                <TableColumn fx:id="crud_col_pass" text="Password">
+                    <cellValueFactory>
+                        <PropertyValueFactory property="password" />
+                    </cellValueFactory>
+                </TableColumn>
+                <TableColumn fx:id="crud_col_firstname" text="First Name">
+                    <cellValueFactory>
+                        <PropertyValueFactory property="firstName" />
+                    </cellValueFactory>
+                </TableColumn>
+                <TableColumn fx:id="crud_col_lastname" text="Last Name">
+                    <cellValueFactory>
+                        <PropertyValueFactory property="lastName" />
+                    </cellValueFactory>
+                </TableColumn>
+                <TableColumn fx:id="crud_col_email" text="Email">
+                    <cellValueFactory>
+                        <PropertyValueFactory property="email" />
+                    </cellValueFactory>
+                </TableColumn>
+                <TableColumn fx:id="crud_col_phone" text="Phone Number">
+                    <cellValueFactory>
+                        <PropertyValueFactory property="phoneNumber" />
+                    </cellValueFactory>
+                </TableColumn>
+            </columns>
+        </TableView>
+        <TextField fx:id="crud_customerID" promptText="Customer ID" />
+        <TextField fx:id="crud_username" promptText="Username" />
+        <TextField fx:id="crud_email" promptText="Email" />
+        <TextField fx:id="crud_firstname" promptText="First Name" />
+        <TextField fx:id="crud_lastname" promptText="Last Name" />
+        <TextField fx:id="crud_phone" promptText="Phone Number" />
+        <HBox alignment="CENTER" spacing="10">
+            <Button fx:id="crud_addBtn" onAction="#addCustomer" text="Add" />
+            <Button fx:id="crud_updateBtn" onAction="#updateCustomer" text="Update" />
+            <Button fx:id="crud_deleteBtn" onAction="#deleteCustomer" text="Delete" />
+        </HBox>
+    </VBox>
 </AnchorPane>
