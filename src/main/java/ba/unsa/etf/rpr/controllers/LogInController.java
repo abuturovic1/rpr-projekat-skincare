@@ -1,7 +1,11 @@
 package ba.unsa.etf.rpr.controllers;
 
+import com.sun.javafx.tk.quantum.EmbeddedStage;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.PasswordField;
 import javafx.scene.layout.AnchorPane;
@@ -9,6 +13,7 @@ import javafx.event.ActionEvent;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 
+import java.io.IOException;
 import java.net.URL;
 import java.sql.*;
 import java.util.ResourceBundle;
@@ -34,7 +39,6 @@ public class LogInController implements Initializable {
     private Connection connection;
     private PreparedStatement ps;
     private ResultSet rs;
-    private Runnable switchToRegistrationAction;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -81,12 +85,19 @@ public class LogInController implements Initializable {
         }
     }
     @FXML
-    private void switchToRegistration(ActionEvent event) {
-        if (switchToRegistrationAction != null) {
-            switchToRegistrationAction.run();
-        }
-    }
-    public void setSwitchToRegistrationAction(Runnable action) {
-        switchToRegistrationAction = action;
+    private void switchToRegistration(ActionEvent event) throws IOException {
+        // Load the registration scene
+        FXMLLoader registrationLoader = new FXMLLoader(getClass().getResource("reg.fxml"));
+        Parent registrationRoot = registrationLoader.load();
+        RegistrationController registrationController = registrationLoader.getController();
+
+        registrationController.setSwitchToLoginAction(() -> {
+            primaryStage.getScene().setRoot(loginRoot); // Assuming you have access to the primaryStage
+            primaryStage.setTitle("Login Form");
+        });
+
+        // Switch to the registration scene
+        primaryStage.setScene(new Scene(registrationRoot));
+        primaryStage.setTitle("Registration Form");
     }
 }
