@@ -9,6 +9,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 
+import java.awt.event.ActionEvent;
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -115,5 +116,15 @@ public class CrudController implements Initializable{
     }
 
 
+    public void addCustomer(ActionEvent event) {
+        Customer newCustomer = new Customer(crud_customerID.getText(),
+                crud_username.getText(),
+                crud_firstname.getText(),
+                crud_lastname.getText(),
+                crud_email.getText(),
+                crud_phone.getText()
+        );
+        customerdao.save(newCustomer);
 
+    }
 }
