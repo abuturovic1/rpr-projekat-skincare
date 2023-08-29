@@ -1,8 +1,10 @@
 package ba.unsa.etf.rpr;
 
+import java.io.IOException;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Properties;
 
 public class TreatmentImpl implements TreatmentDAO{
 private Connection connection;
@@ -11,10 +13,17 @@ private Connection connection;
 
 
     private TreatmentImpl() throws SQLException{
-        String url = "jdbc:mysql://sql.freedb.tech:3306/freedb_rpr baza";
-        String username="freedb_abuturovic1";
-        String pass = System.getenv("DB_PASSWORD");
-        connection = DriverManager.getConnection(url,username,pass);
+        Properties properties = new Properties();
+
+        try{
+            properties.load(ClassLoader.getSystemResource("application.properties").openStream());
+            String url = properties.getProperty("db.url");
+            String username = properties.getProperty("db.username");
+            String pass = properties.getProperty("db.password");
+            connection = DriverManager.getConnection(url,username,pass);
+        }catch(IOException e){
+            e.printStackTrace();
+        }
         pretragaK_ps = connection.prepareStatement("SELECT * FROM Treatment WHERE customer_id = ? ");
         izbrisi_ps=connection.prepareStatement("DELETE FROM Treatment WHERE treatment_id = ?");
         pretraziSve = connection.prepareStatement("SELECT * FROM Treatment");
