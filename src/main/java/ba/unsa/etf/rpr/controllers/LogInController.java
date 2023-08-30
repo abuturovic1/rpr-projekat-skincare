@@ -87,6 +87,10 @@ public class LogInController implements Initializable {
                     alert.setHeaderText(null);
                     alert.setContentText("Succesfull LogIn!");
                     alert.showAndWait();
+                    Stage stage = new Stage();
+                    FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("fxml/reservation.fxml"));
+                    stage.setScene(new Scene(loader.load(), USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
+                    stage.show();
                 }
 
             else{
@@ -96,10 +100,7 @@ public class LogInController implements Initializable {
                 alert.setContentText("Incorrect username/password");
                 alert.showAndWait();
             }
-                Stage stage = new Stage();
-                FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("fxml/reservation.fxml"));
-                stage.setScene(new Scene(loader.load(), USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
-                stage.show();
+
 
 
     }} catch(Exception e){
