@@ -20,6 +20,9 @@ import java.util.ResourceBundle;
 
 import static javafx.scene.control.PopupControl.USE_COMPUTED_SIZE;
 
+/**
+ * The LogInController class manages the functionality of the login form within the application's UI
+ */
 public class LogInController implements Initializable {
     @FXML
     private AnchorPane loginform;

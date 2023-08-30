@@ -7,6 +7,9 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import java.sql.SQLException;
 
+/**
+ * The ReservationController class manages the interaction and functionality of the reservation form in the application's UI
+ */
 public class ReservationController {
 
     @FXML
