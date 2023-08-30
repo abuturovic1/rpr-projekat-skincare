@@ -62,10 +62,10 @@ public class RegistrationController implements Initializable {
     }
 
     public void registerAccount() throws SQLException{
-        String url = "jdbc:mysql://sql.freedb.tech:3306/freedb_rpr baza";
+        /*String url = "jdbc:mysql://sql.freedb.tech:3306/freedb_rpr baza";
         String username="freedb_abuturovic1";
         String pass = System.getenv("DB_PASSWORD");
-        connection = DriverManager.getConnection(url,username,pass);
+        connection = DriverManager.getConnection(url,username,pass);*/
         //String sql = " INSERT INTO Customer (customer_id,username, password, first_name,last_name,email,phone_number) VALUES (?,?,?,?,?,?,?)";
 
         try {
@@ -99,7 +99,7 @@ public class RegistrationController implements Initializable {
                     alert = new Alert(Alert.AlertType.INFORMATION);
                     alert.setTitle("Information Message");
                     alert.setHeaderText(null);
-                    alert.setContentText("Succesfull Registration!");
+                    alert.setContentText("Succesfull Registration! Welcome " +reg_username.getText() + "!");
                     alert.showAndWait();
 
 
