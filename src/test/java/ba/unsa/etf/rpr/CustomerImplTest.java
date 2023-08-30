@@ -33,4 +33,11 @@ public class CustomerImplTest {
         assertEquals(customerIdToFind, foundCustomer.getCustomerID());
 
     }
+    @Test
+    public void testGetAllCustomers() {
+        List<Customer> customers = customerDAO.getAll();
+        assertNotNull(customers);
+        assertFalse(customers.isEmpty());
+
+    }
 }
