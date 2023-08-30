@@ -3,6 +3,7 @@ package ba.unsa.etf.rpr.controllers;
 
 import ba.unsa.etf.rpr.CustomerDAO;
 import ba.unsa.etf.rpr.CustomerImpl;
+import com.sun.javafx.menu.MenuItemBase;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -13,10 +14,13 @@ import javafx.scene.layout.AnchorPane;
 import javafx.event.ActionEvent;
 import javafx.stage.Stage;
 
+
 import java.io.IOException;
 import java.net.URL;
 import java.sql.*;
 import java.util.ResourceBundle;
+
+import static javafx.scene.control.PopupControl.USE_COMPUTED_SIZE;
 
 public class LogInController implements Initializable {
     @FXML
@@ -41,6 +45,7 @@ public class LogInController implements Initializable {
     private Connection connection;
     private PreparedStatement ps;
     private ResultSet rs;
+    private CustomerImpl customerDAO;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -52,8 +57,11 @@ public class LogInController implements Initializable {
                 e.printStackTrace();
             }
         });
-    switchToRegistrationButton.setOnAction(this::switchToSignup);
+        /*su_hyperlink.setOnMouseClicked(event->{
+            switchToSignup(event);
+        });*/
     }
+
 
     public void loginAccount() throws SQLException {
         /*String url = "jdbc:mysql://sql.freedb.tech:3306/freedb_rpr baza";
@@ -73,7 +81,7 @@ public class LogInController implements Initializable {
                 alert.setContentText("Please fill all the blank fields");
                 alert.showAndWait();
             } else{
-                if(customerDAO.authenticateUser(username,password)){
+                if(customerDAO.authenticateUser(username,password) ){
                     alert = new Alert(Alert.AlertType.INFORMATION);
                     alert.setTitle("Information Message");
                     alert.setHeaderText(null);
@@ -88,17 +96,22 @@ public class LogInController implements Initializable {
                 alert.setContentText("Incorrect username/password");
                 alert.showAndWait();
             }
+                Stage stage = new Stage();
+                FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("fxml/reservation.fxml"));
+                stage.setScene(new Scene(loader.load(), USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
+                stage.show();
+
 
     }} catch(Exception e){
             e.printStackTrace();
         }
     }
-public void switchToSignup(ActionEvent event){
-    Stage stage = (Stage)su_hyperlink.getScene().getWindow();
-    stage.close();
-
-}
 
 
-
+    public void switchToSignup(ActionEvent event) throws IOException {
+        Stage stage = new Stage();
+        FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("fxml/reg.fxml"));
+        stage.setScene(new Scene(loader.load(), USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
+        stage.show();
+    }
 }
