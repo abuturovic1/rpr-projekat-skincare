@@ -55,18 +55,10 @@ public class LogInController implements Initializable {
                 e.printStackTrace();
             }
         });
-        /*su_hyperlink.setOnMouseClicked(event->{
-            switchToSignup(event);
-        });*/
     }
 
 
     public void loginAccount() throws SQLException {
-        /*String url = "jdbc:mysql://sql.freedb.tech:3306/freedb_rpr baza";
-        String username="freedb_abuturovic1";
-        String pass = System.getenv("DB_PASSWORD");
-        connection = DriverManager.getConnection(url,username,pass);
-        String sql = "SELECT username,password FROM Customer WHERE username = ? and password = ? ";*/
         String username = si_username.getText();
         String password = si_password.getText();
         CustomerDAO customerDAO = CustomerImpl.getInstance();
