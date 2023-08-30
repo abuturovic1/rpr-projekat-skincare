@@ -44,7 +44,15 @@ public class LogInController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-
+        si_username.requestFocus();
+        si_logInBtn.setOnAction(event -> {
+            try{
+                loginAccount();
+            }catch(SQLException e){
+                e.printStackTrace();
+            }
+        });
+    switchToRegistrationButton.setOnAction(this::switchToSignup);
     }
 
     public void loginAccount() throws SQLException {
