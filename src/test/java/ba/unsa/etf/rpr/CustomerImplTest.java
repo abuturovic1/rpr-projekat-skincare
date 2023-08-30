@@ -53,4 +53,10 @@ public class CustomerImplTest {
         updatedCustomer.setCustomerID(customerIdToUpdate);
         customerDAO.update(updatedCustomer);
     }
+    @Test
+    public void testAuthenticateUser() {
+        String username = "abuturovic1";
+        String password = "abuturovic1";
+        assertTrue(customerDAO.authenticateUser(username, password));
+    }
 }
