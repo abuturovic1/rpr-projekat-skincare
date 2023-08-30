@@ -124,6 +124,10 @@ public class ReservationImpl implements ReservationDAO {
         return reservations;
     }
 
+    /**
+     * Saves a new Reservation object
+     * @param reservation returns the Reservation object to save
+     */
     @Override
     public void save(Reservation reservation) {
         try{
@@ -145,6 +149,10 @@ public class ReservationImpl implements ReservationDAO {
 
     }
 
+    /**
+     * Updates an existing Reservation object
+     * @param reservation the Reservation object to update
+     */
     @Override
     public void update(Reservation reservation) {
         try {
