@@ -98,7 +98,14 @@ public class ReservationImpl implements ReservationDAO {
         }
 
         return reservations;
+
     }
+
+    /**
+     * Retrieves a list of all reservations
+     * @return returns a list containing all available Reservation objects
+     * @throws ReservationException if an error ocurrs during the retrieval
+     */
     @Override
     public List<Reservation> getAll() throws ReservationException{
 
