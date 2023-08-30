@@ -45,7 +45,7 @@ public class ReservationController {
     @FXML
     public void reserveButtonClicked() {
        // String customerID = customerIDField.getText();
-        String username = customerIDField.getText();
+       // String username = customerIDField.getText();
         String selectedTreatment = treatmentComboBox.getValue();
         String reservationDate = reservationDatepicker.getValue().toString();
        String time = timeField.getText();
@@ -57,7 +57,7 @@ public class ReservationController {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        int customerID = customerDAO.getCustomerIdByUsername(username);
+        //int customerID = customerDAO.getCustomerIdByUsername(username);
         if (reservationDAO.isReservationDateTaken(reservationDate)) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Error");
@@ -70,7 +70,7 @@ public class ReservationController {
 
         // Create a Reservation object and populate its properties
         Reservation reservation = new Reservation();
-        reservation.setCustomerID(Integer.parseInt(String.valueOf(customerID))); // Convert to int
+        //reservation.setCustomerID(Integer.parseInt(String.valueOf(customerID))); // Convert to int
         reservation.setTreatmentID(getTreatmentID(selectedTreatment));
         reservation.setReservationDate(reservationDate);
         reservation.setTime(time);
