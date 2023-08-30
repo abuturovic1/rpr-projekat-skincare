@@ -168,6 +168,10 @@ public class ReservationImpl implements ReservationDAO {
         }
     }
 
+    /**
+     * Deletes a Reservation object
+     * @param reservation the reservation object to delete
+     */
     @Override
     public void delete(Reservation reservation) {
         try {
