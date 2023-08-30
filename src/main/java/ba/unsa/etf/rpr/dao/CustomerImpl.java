@@ -8,12 +8,19 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
 
+/**
+ * The CustomerImpl class implements the CustomerDAO interface and provides methods for accessing and managing customer data
+ */
 public class CustomerImpl implements CustomerDAO {
     Properties properties = new Properties();
     private Connection connection;
     private PreparedStatement ps_pretraziSve,ps_dodaj,noviIdUpit,ps_pretraga,ps_izmjena,ps_brisanje,ps_dodaj_up,ps_userID,ps_taken;
     private static CustomerImpl instance = null;
 
+    /**
+     * This constructor constructs a new CustomerImpl instance and establishes a database connection
+     * @throws SQLException throws this if a database access error occurs
+     */
     public CustomerImpl() throws SQLException{
         try{
             properties.load(ClassLoader.getSystemResource("application.properties").openStream());
@@ -41,16 +48,31 @@ public class CustomerImpl implements CustomerDAO {
         ps_taken = connection.prepareStatement("SELECT COUNT(*) FROM Customer WHERE username = ?");
     }
 
+    /**
+     * Implementation of Singleton pattern for creating an instance of CustomerImpl class
+     * @return
+     * @throws SQLException
+     */
  public static CustomerImpl getInstance()throws SQLException{
      if(instance == null) instance = new CustomerImpl();
      return instance;
  }
+
+    /**
+     * Removes an instance because of amount of connections to database
+     * @throws SQLException
+     */
  public static void removeInstance () throws SQLException{
      if(instance == null) return;
      instance.connection.close();
      instance=null;
  }
 
+    /**
+     * Retrieves an ArrayList of Customer objects with the provided ID
+     * @param id the id of the customer to retrieve
+     * @return returns an ArrayList of Customer objects matching the provided ID
+     */
     @Override
     public ArrayList<Customer> get(int id) {
         ArrayList<Customer> customers = new ArrayList<Customer>();
@@ -70,6 +92,10 @@ public class CustomerImpl implements CustomerDAO {
         return customers;
     }
 
+    /**
+     * Retrieves a list of all customers
+     * @return returns a list that contains all customer objets
+     */
     @Override
     public List<Customer> getAll() {
         ArrayList<Customer>customers = new ArrayList<Customer>();
@@ -87,6 +113,10 @@ public class CustomerImpl implements CustomerDAO {
         return customers;
     }
 
+    /**
+     * This method saves a new Customer object
+     * @param customer
+     */
     @Override
     public void save(Customer customer) {
         try {
@@ -114,7 +144,10 @@ public class CustomerImpl implements CustomerDAO {
         }
     }
 
-
+    /**
+     * This method updates an existing Customer object
+     * @param customer the customer object to update
+     */
     @Override
     public void update(Customer customer){
         try {
@@ -133,6 +166,10 @@ public class CustomerImpl implements CustomerDAO {
 
     }
 
+    /**
+     * Deletes a Customer object
+     * @param customer the customer object to delete
+     */
     @Override
     public void delete(Customer customer) {
         try {
@@ -146,9 +183,15 @@ public class CustomerImpl implements CustomerDAO {
     public List<Customer> getbyUsername(String username) {
         return null;
     }
+
+    /**
+     * Retrieves the customer ID associated with the provided username
+     * @param username the username of the customer
+     * @return returns the customer ID corresponding to the provided username (returns -1 if not found)
+     */
     @Override
     public int getCustomerIdByUsername(String username) {
-        int customerId = -1; // Default value indicating not found
+        int customerId = -1;
         ResultSet resultSet = null;
 
         try {
