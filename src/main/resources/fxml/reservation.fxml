@@ -16,7 +16,7 @@
          </font></Label>
         <TextField fx:id="customerIDField" layoutX="150.0" layoutY="95.0" prefWidth="200.0" />
         <ComboBox fx:id="treatmentComboBox" layoutX="150.0" layoutY="145.0" prefWidth="200.0" />
-        <DatePicker fx:id="reservationDatepicker" layoutX="150.0" layoutY="195.0" />
+        <DatePicker fx:id="reservationDatepicker" layoutX="150.0" layoutY="195.0" prefHeight="26.0" prefWidth="200.0" />
         <TextField fx:id="timeField" layoutX="150.0" layoutY="245.0" prefWidth="200.0" />
         <Button fx:id="reserveButton" layoutX="150.0" layoutY="300.0" onAction="#reserveButtonClicked" text="Reserve" />
       <Label layoutX="42.0" layoutY="99.0" text="Username:" textFill="WHITE">
