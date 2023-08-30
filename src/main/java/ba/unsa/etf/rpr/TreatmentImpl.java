@@ -9,7 +9,7 @@ import java.util.Properties;
 public class TreatmentImpl implements TreatmentDAO{
 private Connection connection;
     private static TreatmentImpl instance = null;
-    private PreparedStatement pretragaK_ps,izbrisi_ps,pretraziSve,izmijeni_ps,pretraziPoImenu_ps;
+    private PreparedStatement pretragaK_ps,izbrisi_ps,pretraziSve,izmijeni_ps,pretraziPoImenu_ps,dodajTretman;
 
 
     private TreatmentImpl() throws SQLException{
@@ -30,7 +30,7 @@ private Connection connection;
         //update po nazivu tretmana:
         izmijeni_ps = connection.prepareStatement("UPDATE Treatment SET treatment_id = ? , customer_id = ?, description = ? , duration = ? , price = ?, WHERE name = ?");
         pretraziPoImenu_ps = connection.prepareStatement("SELECT treatment_id FROM Treatment WHERE name = ?");
-
+        dodajTretman = connection.prepareStatement("INSERT INTO Treatment VALUES (?,?,?,?,?,?)");
 
     }
 
@@ -88,6 +88,9 @@ private Connection connection;
 
     @Override
     public void save(Treatment treatment) {
+        try{
+
+        }
 
     }
 
