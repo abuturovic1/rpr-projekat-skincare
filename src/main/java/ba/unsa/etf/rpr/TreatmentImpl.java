@@ -10,7 +10,7 @@ import java.util.Properties;
 public class TreatmentImpl implements TreatmentDAO{
 private Connection connection;
     private static TreatmentImpl instance = null;
-    private PreparedStatement pretragaK_ps,izbrisi_ps,pretraziSve,izmijeni_ps,pretraziPoImenu_ps,dodajTretman;
+    private PreparedStatement pretragaK_ps,izbrisi_ps,pretraziSve,izmijeni_ps,pretraziPoImenu_ps,dodajTretman,noviId;
 
 
     private TreatmentImpl() throws SQLException{
@@ -98,8 +98,8 @@ private Connection connection;
             throw new RuntimeException(e);
         }
         try{
-            dodajTretman.setInt(1,treatment.getCustomer_id());
-            dodajTretman.setInt(2,treatment.getTreatment_id());
+            dodajTretman.setInt(1,treatment.getTreatment_id());
+            dodajTretman.setInt(2,treatment.getCustomer_id());
             dodajTretman.setString(3,treatment.getName());
             dodajTretman.setString(4,treatment.getDescription());
             dodajTretman.setInt(5,treatment.getDuration());
