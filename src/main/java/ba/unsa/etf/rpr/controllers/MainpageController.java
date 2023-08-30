@@ -7,6 +7,11 @@ import javafx.stage.Stage;
 import static javafx.scene.control.PopupControl.USE_COMPUTED_SIZE;
 import java.io.IOException;
 import javafx.scene.control.*;
+
+/**
+ * The controller class for the main page of the application
+ * Manages the behavior of the main page UI elements
+ */
 public class MainpageController {
     @FXML
     private Button startID;
