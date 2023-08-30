@@ -71,7 +71,7 @@ public class ReservationController {
         // Create a Reservation object and populate its properties
         Reservation reservation = new Reservation();
         reservation.setCustomerID(Integer.parseInt(String.valueOf(customerID))); // Convert to int
-        reservation.setTreatmentID(getTreatmentID(selectedTreatment)); // You need to implement this method
+        reservation.setTreatmentID(getTreatmentID(selectedTreatment));
         reservation.setReservationDate(reservationDate);
         reservation.setTime(time);
         reservation.setStatus("Pending"); // Default status

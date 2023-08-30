@@ -137,8 +137,39 @@ try{
     public List<Treatment> getbyTreatmentName(String name) {
         return null;
     }
+
+    @Override
+    public List<Treatment> getPreviousTreatments(int customerID) {
+        List<Treatment> previousTreatments = new ArrayList<>();
+
+        try {
+            String query = "SELECT * FROM Treatment WHERE customer_id = ?";
+            PreparedStatement preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setInt(1, customerID);
+
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            while (resultSet.next()) {
+                Treatment treatment = new Treatment();
+                treatment.setTreatment_id(resultSet.getInt("treatment_id"));
+                treatment.setCustomer_id(resultSet.getInt("customer_id"));
+                treatment.setName(resultSet.getString("name"));
+                // Set other treatment attributes here
+
+                previousTreatments.add(treatment);
+            }
+
+            resultSet.close();
+            preparedStatement.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return previousTreatments;
+    }
+}
    /* @Override
     public List<Treatment> getbyTreatmentName(String name) {
         return null;
     }*/
-}
+
