@@ -1,6 +1,8 @@
 package ba.unsa.etf.rpr.controllers;
 
 
+import ba.unsa.etf.rpr.CustomerDAO;
+import ba.unsa.etf.rpr.CustomerImpl;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -46,11 +48,14 @@ public class LogInController implements Initializable {
     }
 
     public void loginAccount() throws SQLException {
-        String url = "jdbc:mysql://sql.freedb.tech:3306/freedb_rpr baza";
+        /*String url = "jdbc:mysql://sql.freedb.tech:3306/freedb_rpr baza";
         String username="freedb_abuturovic1";
         String pass = System.getenv("DB_PASSWORD");
         connection = DriverManager.getConnection(url,username,pass);
-        String sql = "SELECT username,password FROM Customer WHERE username = ? and password = ? ";
+        String sql = "SELECT username,password FROM Customer WHERE username = ? and password = ? ";*/
+        String username = si_username.getText();
+        String password = si_password.getText();
+        CustomerDAO customerDAO = CustomerImpl.getInstance();
         try{
             Alert alert;
             if(si_username.getText().isEmpty() || si_password.getText().isEmpty()){
@@ -60,18 +65,14 @@ public class LogInController implements Initializable {
                 alert.setContentText("Please fill all the blank fields");
                 alert.showAndWait();
             } else{
-        ps = connection.prepareStatement(sql);
-            ps.setString(1,si_username.getText());
-            ps.setString(2,si_password.getText());
-            rs = ps.executeQuery();
+                if(customerDAO.authenticateUser(username,password)){
+                    alert = new Alert(Alert.AlertType.INFORMATION);
+                    alert.setTitle("Information Message");
+                    alert.setHeaderText(null);
+                    alert.setContentText("Succesfull LogIn!");
+                    alert.showAndWait();
+                }
 
-            if(rs.next()){
-                alert = new Alert(Alert.AlertType.INFORMATION);
-                alert.setTitle("Information Message");
-                alert.setHeaderText(null);
-                alert.setContentText("Succesfull LogIn!");
-                alert.showAndWait();
-            }
             else{
                 alert = new Alert(Alert.AlertType.ERROR);
                 alert.setTitle("Error Message");
