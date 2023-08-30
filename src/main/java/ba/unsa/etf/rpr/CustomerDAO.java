@@ -14,5 +14,7 @@ List<Customer>getbyUsername(String username);
 
 
     int getCustomerIdByUsername(String username);
+
+    boolean authenticateUser(String username, String password);
 }
 
