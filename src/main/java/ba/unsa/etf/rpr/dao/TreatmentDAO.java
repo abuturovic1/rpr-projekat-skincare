@@ -1,6 +1,5 @@
 package ba.unsa.etf.rpr.dao;
 
-import ba.unsa.etf.rpr.Dao;
 import ba.unsa.etf.rpr.Treatment;
 
 import java.util.List;

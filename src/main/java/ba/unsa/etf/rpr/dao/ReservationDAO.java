@@ -1,9 +1,6 @@
 package ba.unsa.etf.rpr.dao;
 
-import ba.unsa.etf.rpr.Dao;
 import ba.unsa.etf.rpr.Reservation;
-
-import java.util.List;
 
 /**
  * Defines methods for accessing and managing reservation data
