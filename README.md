@@ -5,8 +5,3 @@ Welcome to SkinCarePro, your ultimate destination for personalized facial treatm
 - **User-Friendly Booking**: Easily schedule your preferred facial treatments through our intuitive booking system. Choose from a range of treatments tailored to your skincare needs.
 
 - **Personalized User Profiles**: Create and manage your personalized profile within the app.
-
-- **Expert Consultations**: Connect with certified dermatology experts who are available to provide personalized advice and recommendations for your skincare regimen.
-- **Treatment Recommendations**: Based on detailed assessments from our specialists, receive targeted recommendations for your next facial treatment or recommended skincare products.
-
-- **Seamless Communication**: Enjoy smooth and direct communication with dermatology experts. Discuss concerns, ask questions, and receive timely responses to ensure a comprehensive skincare experience.
