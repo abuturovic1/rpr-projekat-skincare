@@ -1,5 +1,6 @@
 package ba.unsa.etf.rpr;
 
+import javax.swing.plaf.nimbus.State;
 import java.io.IOException;
 import java.sql.*;
 import java.util.ArrayList;
@@ -89,7 +90,24 @@ private Connection connection;
     @Override
     public void save(Treatment treatment) {
         try{
+            Statement alterStatement = connection.createStatement();
+            String alterSql = "ALTER TABLE Treatment MODIFY treatment_id INT AUTO_INCREMENT";
+            alterStatement.executeUpdate(alterSql);
 
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        try{
+            dodajTretman.setInt(1,treatment.getCustomer_id());
+            dodajTretman.setInt(2,treatment.getTreatment_id());
+            dodajTretman.setString(3,treatment.getName());
+            dodajTretman.setString(4,treatment.getDescription());
+            dodajTretman.setInt(5,treatment.getDuration());
+            dodajTretman.setDouble(6,treatment.getPrice());
+            dodajTretman.execute();
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
         }
 
     }
