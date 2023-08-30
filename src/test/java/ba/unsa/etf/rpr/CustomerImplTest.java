@@ -40,4 +40,17 @@ public class CustomerImplTest {
         assertFalse(customers.isEmpty());
 
     }
+    @Test
+    public void testUpdateCustomer() {
+        int customerIdToUpdate = 1;
+        Customer updatedCustomer = new Customer();
+        updatedCustomer.setUsername("new_username");
+        updatedCustomer.setPassword("new_password");
+        updatedCustomer.setFirstName("FirstName");
+        updatedCustomer.setLastName("LastName");
+        updatedCustomer.setEmail("new_email");
+        updatedCustomer.setPhoneNumber("new_phone_number");
+        updatedCustomer.setCustomerID(customerIdToUpdate);
+        customerDAO.update(updatedCustomer);
+    }
 }
