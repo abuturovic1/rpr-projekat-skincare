@@ -8,6 +8,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
 
+/**
+ * The TreatmentImpl class implements the TreatmentDAO interface and provides methods for accessing and managing treatment data
+ */
 public class TreatmentImpl implements TreatmentDAO {
 private Connection connection;
     private static TreatmentImpl instance = null;
@@ -36,7 +39,11 @@ private Connection connection;
 
     }
 
-
+    /**
+     * Implementation of Singleton pattern
+     * @return
+     * @throws SQLException
+     */
     public static TreatmentImpl getInstance()throws SQLException {
         if(instance == null) instance = new TreatmentImpl();
         return instance;
