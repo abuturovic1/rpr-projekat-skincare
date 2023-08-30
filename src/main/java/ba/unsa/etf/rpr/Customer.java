@@ -2,6 +2,9 @@ package ba.unsa.etf.rpr;
 
 import java.util.Date;
 
+/**
+ * The Customer class is a regular Java Bean class which represents a customer in a system
+ */
 
 public class Customer {
     private int customerID;
@@ -13,8 +16,17 @@ public class Customer {
     private String email;
     private String phoneNumber;
 
-
-public Customer(int customerID,String username,String password,String firstName, String lastName, String email, String phoneNumber){
+    /**
+     * Constructor - constructs a new Customer object with the provided information
+     * @param customerID unique ID of the customer
+     * @param username username of the customer
+     * @param password password of the customer
+     * @param firstName the first name of the customer
+     * @param lastName the last name of the customer
+     * @param email the email adress of the customer
+     * @param phoneNumber the phone number of the customer
+     */
+    public Customer(int customerID,String username,String password,String firstName, String lastName, String email, String phoneNumber){
     this.username=username;
     this.password=password;
     this.customerID=customerID;
@@ -39,6 +51,9 @@ public Customer(int customerID,String username,String password,String firstName,
                 '}';
     }*/
 
+    /**
+     * Empty Constructor that constructs a new empty Customer object
+     */
     public Customer(){}
 
 
