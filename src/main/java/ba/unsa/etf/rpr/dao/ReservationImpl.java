@@ -9,6 +9,9 @@ import java.util.Properties;
 import ba.unsa.etf.rpr.Reservation;
 import ba.unsa.etf.rpr.exceptions.ReservationException;
 
+/**
+ * The ReservationImpl class implements the ReservationDAO interface and provides methods for accessing and managing reservations
+ */
 public class ReservationImpl implements ReservationDAO {
 
     private Connection connection;
