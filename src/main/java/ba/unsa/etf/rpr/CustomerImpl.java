@@ -162,6 +162,21 @@ public class CustomerImpl implements CustomerDAO{
 
         return customerId;
     }
+    @Override
+    public boolean authenticateUser(String username,String password){
+        String sql = "SELECT username, password FROM Customer WHERE username = ? AND password = ?";
+        try{
+            PreparedStatement ps_authenticate = connection.prepareStatement(sql);
+            ps_authenticate.setString(1,username);
+            ps_authenticate.setString(2,password);
+            ResultSet rs = ps_authenticate.executeQuery();
+            return rs.next();
+        }catch(SQLException e){
+            e.printStackTrace();
+            return false;
+        }
+
+    }
 
 
 
