@@ -63,20 +63,49 @@ public class ReservationController {
             alert.showAndWait();
             return;
         }
-
-
-        // Create a Reservation object and populate its properties
+        int treatmentID = treatmentDAO.getTreatmentIDByName(selectedTreatment);
         Reservation reservation = new Reservation();
-        reservation.setCustomerID(Integer.parseInt(String.valueOf(customerID))); // Convert to int
+        reservation.setCustomerID(Integer.parseInt(String.valueOf(customerID)));
         reservation.setTreatmentID(getTreatmentID(selectedTreatment));
         reservation.setReservationDate(reservationDate);
         reservation.setTime(time);
-        reservation.setStatus("Pending"); // Default status
-
-        int treatmentID = treatmentDAO.getTreatmentIDByName(selectedTreatment);
-
-        // Save the reservation
+        reservation.setStatus("Pending");
         reservationDAO.save(reservation);
+    if(selectedTreatment == "Acne Treatment") {
+    Treatment treatment = new Treatment();
+    treatment.setCustomer_id(Integer.parseInt(String.valueOf(customerID)));
+    treatment.setTreatment_id(getTreatmentID(selectedTreatment));
+    treatment.setName(selectedTreatment);
+    treatment.setDescription("Targeted care for acne-prone skin, includes extractions and LED therapy.");
+    treatment.setDuration(1);
+    treatment.setPrice(50.0);
+    treatmentDAO.save(treatment);
+}
+    else if(selectedTreatment == "Microdermabrasion"){
+        Treatment treatment = new Treatment();
+        treatment.setCustomer_id(Integer.parseInt(String.valueOf(customerID)));
+        treatment.setTreatment_id(getTreatmentID(selectedTreatment));
+        treatment.setName(selectedTreatment);
+        treatment.setDescription("Gentle skin exfoliation for smoother, scar-free skin.");
+        treatment.setDuration(2);
+        treatment.setPrice(100.0);
+        treatmentDAO.save(treatment);
+
+    }
+    else if(selectedTreatment == "Chemical Peel"){
+        Treatment treatment = new Treatment();
+        treatment.setCustomer_id(Integer.parseInt(String.valueOf(customerID)));
+        treatment.setTreatment_id(getTreatmentID(selectedTreatment));
+        treatment.setName(selectedTreatment);
+        treatment.setDescription("Exfoliating solutions reveal youthful, smoother skin layers.");
+        treatment.setDuration(1);
+        treatment.setPrice(60.0);
+        treatmentDAO.save(treatment);
+
+    }
+
+
+
 
         Alert alert;
         alert = new Alert(Alert.AlertType.INFORMATION);
@@ -85,8 +114,6 @@ public class ReservationController {
         alert.setContentText("You successfully booked your treatment!");
         alert.showAndWait();
 
-        // Show a confirmation or message to the user
-        //System.out.println("Reservation made for customer " + customerID);
     }
 
     private int getTreatmentID(String treatmentName) {
