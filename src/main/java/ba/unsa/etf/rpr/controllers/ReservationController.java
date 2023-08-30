@@ -29,10 +29,9 @@ public class ReservationController {
     private CustomerImpl customerDAO;
     @FXML
     public void initialize() {
-        // Initialize ComboBox with treatment names
+
         treatmentComboBox.getItems().addAll("Acne Treatment", "Microdermabrasion", "Chemical Peel");
 
-        // Initialize the reservationDAO
         try {
             reservationDAO = ReservationImpl.getInstance();
         } catch (SQLException e) {
@@ -42,7 +41,6 @@ public class ReservationController {
 
     @FXML
     public void reserveButtonClicked() {
-       // String customerID = customerIDField.getText();
         String username = customerIDField.getText();
         String selectedTreatment = treatmentComboBox.getValue();
         String reservationDate = reservationDatepicker.getValue().toString();
@@ -118,8 +116,7 @@ public class ReservationController {
     }
 
     private int getTreatmentID(String treatmentName) {
-        // You might need to call TreatmentSQLImplementation to retrieve the treatment ID by name
-        return 0; // Placeholder value, replace with actual logic
+        return 0;
     }
 
 
