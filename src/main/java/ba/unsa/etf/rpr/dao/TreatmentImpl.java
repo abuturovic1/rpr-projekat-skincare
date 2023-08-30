@@ -1,13 +1,14 @@
-package ba.unsa.etf.rpr;
+package ba.unsa.etf.rpr.dao;
 
-import javax.swing.plaf.nimbus.State;
+import ba.unsa.etf.rpr.Treatment;
+
 import java.io.IOException;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
 
-public class TreatmentImpl implements TreatmentDAO{
+public class TreatmentImpl implements TreatmentDAO {
 private Connection connection;
     private static TreatmentImpl instance = null;
     private PreparedStatement pretragaK_ps,izbrisi_ps,pretraziSve,izmijeni_ps,pretraziPoImenu_ps,dodajTretman,noviId;
@@ -89,14 +90,14 @@ private Connection connection;
 
     @Override
     public void save(Treatment treatment) {
-        try{
+        /*try{
             Statement alterStatement = connection.createStatement();
             String alterSql = "ALTER TABLE Treatment MODIFY treatment_id INT AUTO_INCREMENT";
             alterStatement.executeUpdate(alterSql);
 
         } catch (SQLException e) {
             throw new RuntimeException(e);
-        }
+        }*/
         try{
             dodajTretman.setInt(1,treatment.getTreatment_id());
             dodajTretman.setInt(2,treatment.getCustomer_id());
@@ -151,7 +152,7 @@ try{
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return -1; // Treatment not found
+        return -1;
     }
 
     @Override
@@ -175,7 +176,6 @@ try{
                 treatment.setTreatment_id(resultSet.getInt("treatment_id"));
                 treatment.setCustomer_id(resultSet.getInt("customer_id"));
                 treatment.setName(resultSet.getString("name"));
-                // Set other treatment attributes here
 
                 previousTreatments.add(treatment);
             }

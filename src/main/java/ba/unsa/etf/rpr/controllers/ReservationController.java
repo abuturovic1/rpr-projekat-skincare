@@ -1,10 +1,11 @@
 package ba.unsa.etf.rpr.controllers;
 import ba.unsa.etf.rpr.*;
+import ba.unsa.etf.rpr.dao.CustomerImpl;
+import ba.unsa.etf.rpr.dao.ReservationImpl;
+import ba.unsa.etf.rpr.dao.TreatmentImpl;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import java.sql.SQLException;
-import java.time.LocalTime;
-import java.util.List;
 
 public class ReservationController {
 

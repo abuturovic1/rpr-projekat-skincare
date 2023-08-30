@@ -1,13 +1,11 @@
 package ba.unsa.etf.rpr.controllers;
 
 
-import ba.unsa.etf.rpr.CustomerDAO;
-import ba.unsa.etf.rpr.CustomerImpl;
-import com.sun.javafx.menu.MenuItemBase;
+import ba.unsa.etf.rpr.dao.CustomerDAO;
+import ba.unsa.etf.rpr.dao.CustomerImpl;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;

@@ -1,4 +1,4 @@
-package ba.unsa.etf.rpr;
+package ba.unsa.etf.rpr.dao;
 
 import java.io.IOException;
 import java.sql.*;
@@ -6,9 +6,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
 
+import ba.unsa.etf.rpr.Reservation;
 import ba.unsa.etf.rpr.exceptions.ReservationException;
 
-public class ReservationImpl implements ReservationDAO{
+public class ReservationImpl implements ReservationDAO {
 
     private Connection connection;
     PreparedStatement pretraga_ps,dodaj_ps,izmijeni_ps,sveRezervacije_ps,brisanje_ps,pretragaK_ps,noviId,datum_ps;
@@ -150,11 +151,11 @@ public class ReservationImpl implements ReservationDAO{
             ResultSet resultSet = datum_ps.executeQuery();
             if (resultSet.next()) {
                 int count = resultSet.getInt(1);
-                return count > 0; // If count > 0, the date is taken
+                return count > 0;
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return false; // Default to date not taken
+        return false;
     }
 }

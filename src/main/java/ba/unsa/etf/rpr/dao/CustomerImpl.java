@@ -1,4 +1,6 @@
-package ba.unsa.etf.rpr;
+package ba.unsa.etf.rpr.dao;
+
+import ba.unsa.etf.rpr.Customer;
 
 import java.io.IOException;
 import java.sql.*;
@@ -6,10 +8,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
 
-public class CustomerImpl implements CustomerDAO{
+public class CustomerImpl implements CustomerDAO {
     Properties properties = new Properties();
     private Connection connection;
-    private PreparedStatement ps_pretraziSve,ps_dodaj,noviIdUpit,ps_pretraga,ps_izmjena,ps_brisanje,ps_dodaj_up,ps_userID;
+    private PreparedStatement ps_pretraziSve,ps_dodaj,noviIdUpit,ps_pretraga,ps_izmjena,ps_brisanje,ps_dodaj_up,ps_userID,ps_taken;
     private static CustomerImpl instance = null;
 
     public CustomerImpl() throws SQLException{
@@ -36,7 +38,7 @@ public class CustomerImpl implements CustomerDAO{
         ps_dodaj_up = connection.prepareStatement("INSERT INTO Customer (username,password) VALUES (?,?)");
         //username i id relation
         ps_userID = connection.prepareStatement("SELECT customer_id FROM Customer WHERE username = ?");
-
+        ps_taken = connection.prepareStatement("SELECT COUNT(*) FROM Customer WHERE username = ?");
     }
 
  public static CustomerImpl getInstance()throws SQLException{
@@ -59,9 +61,9 @@ public class CustomerImpl implements CustomerDAO{
                 customers.add(new Customer(rs.getInt(1),rs.getString(2),
                         rs.getString(3),rs.getString(4),rs.getString(5),rs.getString(6),rs.getString(7)));
             }
-            //System.out.println("Uspjesna konekcija");
+
         }catch(SQLException e){
-            //System.out.println("Neuspjesna konekcija"+e.getMessage());
+
             throw new RuntimeException(e);
 
         }
@@ -116,14 +118,15 @@ public class CustomerImpl implements CustomerDAO{
     @Override
     public void update(Customer customer){
         try {
-            ps_izmjena.setInt(7,customer.getCustomerID());
+
             ps_izmjena.setString(1,customer.getUsername());
             ps_izmjena.setString(2,customer.getPassword());
             ps_izmjena.setString(3,customer.getFirstName());
             ps_izmjena.setString(4,customer.getLastName());
             ps_izmjena.setString(5,customer.getEmail());
             ps_izmjena.setString(6,customer.getPhoneNumber());
-            ps_izmjena.execute();
+            ps_izmjena.setInt(7,customer.getCustomerID());
+            ps_izmjena.executeUpdate();
         }catch(SQLException e){
             e.printStackTrace();
         }
@@ -134,7 +137,7 @@ public class CustomerImpl implements CustomerDAO{
     public void delete(Customer customer) {
         try {
             ps_brisanje.setInt(1, customer.getCustomerID());
-            ps_brisanje.execute();
+            ps_brisanje.executeUpdate();
         } catch(SQLException e){
             e.printStackTrace();
         }
@@ -162,24 +165,42 @@ public class CustomerImpl implements CustomerDAO{
 
         return customerId;
     }
+
     @Override
-    public boolean authenticateUser(String username,String password){
+    public boolean authenticateUser(String username,String password) {
         String sql = "SELECT username, password FROM Customer WHERE username = ? AND password = ?";
-        try{
+        try {
             PreparedStatement ps_authenticate = connection.prepareStatement(sql);
-            ps_authenticate.setString(1,username);
-            ps_authenticate.setString(2,password);
+            ps_authenticate.setString(1, username);
+            ps_authenticate.setString(2, password);
             ResultSet rs = ps_authenticate.executeQuery();
             return rs.next();
-        }catch(SQLException e){
+        } catch (SQLException e) {
             e.printStackTrace();
             return false;
         }
-
     }
 
-
-
+        @Override
+        public boolean isUsernameTaken(String username){
+            try{
+                ps_taken.setString(1,username);
+                ResultSet rs = ps_taken.executeQuery();
+                if(rs.next()){
+                    int count = rs.getInt(1);
+                    return count>0;
+                }
+            }catch(SQLException e){
+                e.printStackTrace();
+            }
+            return false;
+        }
 
 
 }
+
+
+
+
+
+

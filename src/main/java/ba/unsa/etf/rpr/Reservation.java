@@ -5,8 +5,6 @@ import java.util.*;
 
 public class Reservation {  //javabean class
     private int reservationID,customerID,treatmentID;
-   /* private Date reservationDate;
-    private Time time;*/
     private String status,reservationDate,time;
 
 public Reservation(int reservationID,int customerID,int treatmentID,String reservationDate,String time,String status){

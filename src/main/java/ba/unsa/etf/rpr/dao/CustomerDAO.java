@@ -1,12 +1,13 @@
-package ba.unsa.etf.rpr;
+package ba.unsa.etf.rpr.dao;
+
+import ba.unsa.etf.rpr.Customer;
+import ba.unsa.etf.rpr.Dao;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.List;
-//by extending our DAO in this manner, we actually provide for the ability to add additional methods in our
-//CustomerDAO that are not present in our standard DAO.
 public interface CustomerDAO extends Dao<Customer> {
 
 List<Customer>getbyUsername(String username);
@@ -16,5 +17,7 @@ List<Customer>getbyUsername(String username);
     int getCustomerIdByUsername(String username);
 
     boolean authenticateUser(String username, String password);
+
+    boolean isUsernameTaken(String username);
 }
 
