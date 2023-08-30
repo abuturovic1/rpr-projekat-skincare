@@ -18,6 +18,12 @@ public class ReservationImpl implements ReservationDAO {
     PreparedStatement pretraga_ps,dodaj_ps,izmijeni_ps,sveRezervacije_ps,brisanje_ps,pretragaK_ps,noviId,datum_ps;
 
     private static ReservationImpl instance = null;
+
+    /**
+     * The Singleton pattern implementation - creating an instance of ReservationImpl
+     * @return
+     * @throws SQLException
+     */
     public static ReservationImpl getInstance()throws SQLException{
         if(instance == null) instance = new ReservationImpl();
         return instance;
@@ -27,6 +33,11 @@ public class ReservationImpl implements ReservationDAO {
         instance.connection.close();
         instance=null;
     }
+
+    /**
+     * Establishes a database connection
+     * @throws SQLException
+     */
     private ReservationImpl() throws SQLException{
         Properties properties = new Properties();
 
@@ -55,6 +66,13 @@ public class ReservationImpl implements ReservationDAO {
 
         return null;
     }*/
+
+    /**
+     * Retrieves an ArrayList of Reservation objects associated with the provided customer ID
+     * @param customerID the id of the customer to retrieve reservations for
+     * @return returns an ArrayList of Reservation objects associated with the provided customer id
+     * @throws ReservationException if an error occurs during the retrieval process
+     */
     @Override
     public ArrayList<Reservation> get(int customerID) throws ReservationException{
         ArrayList<Reservation> reservations = new ArrayList<>();
