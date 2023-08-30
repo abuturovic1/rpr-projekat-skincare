@@ -1,12 +1,8 @@
 package ba.unsa.etf.rpr.controllers;
 
 import ba.unsa.etf.rpr.Customer;
-import ba.unsa.etf.rpr.CustomerDAO;
-import ba.unsa.etf.rpr.CustomerImpl;
+import ba.unsa.etf.rpr.dao.CustomerImpl;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.fxml.Initializable;
 import javafx.scene.layout.AnchorPane;
@@ -18,6 +14,10 @@ import java.net.URL;
 import java.sql.*;
 import java.util.ResourceBundle;
 
+/**
+ * The controller class for the registration form in the application's UI
+ * This class manages the behavior of the registration form UI elements
+ */
 public class RegistrationController implements Initializable {
 
     private CustomerImpl dao;
@@ -54,6 +54,7 @@ public class RegistrationController implements Initializable {
     Connection connection;
     PreparedStatement ps;
     private Runnable switchToLoginAction;
+    private CustomerImpl customerDAO;
 
 
     @Override
@@ -62,15 +63,18 @@ public class RegistrationController implements Initializable {
     }
 
     public void registerAccount() throws SQLException{
-        /*String url = "jdbc:mysql://sql.freedb.tech:3306/freedb_rpr baza";
-        String username="freedb_abuturovic1";
-        String pass = System.getenv("DB_PASSWORD");
-        connection = DriverManager.getConnection(url,username,pass);*/
-        //String sql = " INSERT INTO Customer (customer_id,username, password, first_name,last_name,email,phone_number) VALUES (?,?,?,?,?,?,?)";
-
         try {
             Alert alert;
-            if (reg_username.getText().isEmpty() || reg_pass.getText().isEmpty() || reg_firstname.getText().isEmpty() || reg_lastname.getText().isEmpty() || reg_email.getText().isEmpty() || reg_phoneN.getText().isEmpty()) {
+            customerDAO = CustomerImpl.getInstance();
+            if(customerDAO.isUsernameTaken(reg_username.getText())){
+                alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Error Message");
+                alert.setHeaderText(null);
+                alert.setContentText("The username you entered is already taken");
+                alert.showAndWait();
+
+            }
+            else if (reg_username.getText().isEmpty() || reg_pass.getText().isEmpty() || reg_firstname.getText().isEmpty() || reg_lastname.getText().isEmpty() || reg_email.getText().isEmpty() || reg_phoneN.getText().isEmpty()) {
                 alert = new Alert(Alert.AlertType.ERROR);
                 alert.setTitle("Error Message");
                 alert.setHeaderText(null);
@@ -112,11 +116,13 @@ public class RegistrationController implements Initializable {
 
 
     }
-    public void switchToLogin(ActionEvent event){
+
+    public void switchToLogin(ActionEvent event) throws IOException{
         Stage stage = (Stage)hyperlinkID.getScene().getWindow();
         stage.close();
 
     }
+
 
 
 

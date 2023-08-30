@@ -1,5 +1,6 @@
 package ba.unsa.etf.rpr;
 
+import ba.unsa.etf.rpr.dao.CustomerImpl;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -13,7 +14,7 @@ public class CustomerImplTest {
 
     @BeforeEach
     public void setUp() {
-        // Initialize your CustomerDAO implementation before each test
+
         try {
             customerDAO = CustomerImpl.getInstance();
         } catch (SQLException e) {
@@ -23,7 +24,7 @@ public class CustomerImplTest {
 
     @Test
     public void testGetCustomerById() {
-        int customerIdToFind = 1; // Change this to a valid customer ID in your database
+        int customerIdToFind = 1;
         List<Customer> customers = customerDAO.get(customerIdToFind);
         assertNotNull(customers);
         assertFalse(customers.isEmpty());
