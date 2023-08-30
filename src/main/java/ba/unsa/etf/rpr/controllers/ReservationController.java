@@ -32,7 +32,7 @@ public class ReservationController {
     @FXML
     public void initialize() {
         // Initialize ComboBox with treatment names
-        treatmentComboBox.getItems().addAll("Treatment A", "Treatment B", "Treatment C");
+        treatmentComboBox.getItems().addAll("Acne Treatment", "Microdermabrasion", "Chemical Peel");
 
         // Initialize the reservationDAO
         try {
