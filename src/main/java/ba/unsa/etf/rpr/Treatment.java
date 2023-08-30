@@ -1,10 +1,23 @@
 package ba.unsa.etf.rpr;
 
-public class Treatment {  //javabean klasa Treatment
-    private String name,description; //naziv i opis tretmana
-    private int duration,treatment_id,customer_id; //trajanje tretmana
-    private double price; //cijena tretmana
-public Treatment(int treatment_id,int customer_id,String name, String description,int duration,double price){
+/**
+ * This class represents a treatment offered to customers
+ */
+public class Treatment {
+    private String name,description;
+    private int duration,treatment_id,customer_id;
+    private double price;
+
+    /**
+     * Constructor that constructs a new Treatment object with the provided information
+     * @param treatment_id unique ID of the treatment
+     * @param customer_id the id of the customer associated with the treatment
+     * @param name the name of the treatment
+     * @param description the description of the treatment
+     * @param duration the duration of the treatment
+     * @param price the price of the treatment
+     */
+    public Treatment(int treatment_id,int customer_id,String name, String description,int duration,double price){
     this.customer_id=customer_id;
     this.treatment_id=treatment_id;
     this.name=name;
@@ -12,7 +25,11 @@ public Treatment(int treatment_id,int customer_id,String name, String descriptio
     this.duration=duration;
     this.price=price;
 }
-public Treatment(){}
+
+    /**
+     * Empty Constructor which constructs a new empty Treatment object
+     */
+    public Treatment(){}
     public String getName() {
         return name;
     }
