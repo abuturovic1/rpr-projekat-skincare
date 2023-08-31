@@ -166,6 +166,7 @@ public class AppTerminal {
         }
         else {
             System.out.println("Error! You either don't have account or you entered wrong data!");
+
         }
 
     }

@@ -9,6 +9,9 @@ import java.util.List;
 
 import static org.junit.Assert.*;
 
+/**
+ * Unit tests for the CustomerImpl class. Tests cover functionalities of the CustomerImpl class
+ */
 public class CustomerImplTest {
     private CustomerImpl customerDAO;
 
