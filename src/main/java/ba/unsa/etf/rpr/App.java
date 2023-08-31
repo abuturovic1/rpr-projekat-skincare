@@ -14,6 +14,9 @@ import javafx.stage.Stage;
 
 import static javafx.scene.control.PopupControl.USE_COMPUTED_SIZE;
 
+/**
+ * App class extends the JavaFX Application class and it is used for initializing and launching the application's GUI
+ */
 public class App extends Application{
     @Override
     public void start(Stage primaryStage) throws Exception {
