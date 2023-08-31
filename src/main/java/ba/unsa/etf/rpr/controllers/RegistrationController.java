@@ -3,6 +3,8 @@ package ba.unsa.etf.rpr.controllers;
 import ba.unsa.etf.rpr.Customer;
 import ba.unsa.etf.rpr.dao.CustomerImpl;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.fxml.Initializable;
 import javafx.scene.layout.AnchorPane;
@@ -13,6 +15,8 @@ import java.io.IOException;
 import java.net.URL;
 import java.sql.*;
 import java.util.ResourceBundle;
+
+import static javafx.scene.control.PopupControl.USE_COMPUTED_SIZE;
 
 /**
  * The controller class for the registration form in the application's UI
@@ -105,6 +109,10 @@ public class RegistrationController implements Initializable {
                     alert.setHeaderText(null);
                     alert.setContentText("Succesfull Registration! Welcome " +reg_username.getText() + "!");
                     alert.showAndWait();
+                    Stage stage = new Stage();
+                    FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("fxml/logIn.fxml"));
+                    stage.setScene(new Scene(loader.load(), USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
+                    stage.show();
 
 
             }
