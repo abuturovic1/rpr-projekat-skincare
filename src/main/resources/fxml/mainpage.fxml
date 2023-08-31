@@ -5,7 +5,6 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
 <AnchorPane prefHeight="400.0" prefWidth="600.0" styleClass="other-form" stylesheets="@../css/design.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ba.unsa.etf.rpr.controllers.MainpageController">
    <children>
       <Label contentDisplay="CENTER" layoutX="97.0" layoutY="114.0" prefHeight="68.0" prefWidth="427.0" text="Welcome to SkinCare Pro" textFill="WHITE">
