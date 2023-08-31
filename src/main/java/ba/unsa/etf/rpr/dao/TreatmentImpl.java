@@ -150,16 +150,18 @@ try{
     }
 
     public int getTreatmentIDByName(String treatmentName) {
+        int treatmentID = -1;
+        ResultSet rs = null;
         try {
             pretraziPoImenu_ps.setString(1, treatmentName);
-            ResultSet rs = pretraziPoImenu_ps.executeQuery();
+            rs = pretraziPoImenu_ps.executeQuery();
             if (rs.next()) {
-                return rs.getInt("treatment_id");
+                treatmentID = rs.getInt("treatment_id");
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return -1;
+        return treatmentID;
     }
 
     @Override

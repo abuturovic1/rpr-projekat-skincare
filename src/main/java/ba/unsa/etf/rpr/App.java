@@ -231,7 +231,7 @@ public class App extends Application{
 
 
         System.out.println("Unesite ID rezervacije: ");
-        res_id = Integer.parseInt(ulaz.nextLine());   //parseInt -> (convert) a string representation of an integer into an actual integer value
+        res_id = Integer.parseInt(ulaz.nextLine());
         System.out.println("Unesite ID korisnika: ");
         cus_id = Integer.parseInt(ulaz.nextLine());
         System.out.println("Unesite ID tretmana: ");

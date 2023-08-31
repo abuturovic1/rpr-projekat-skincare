@@ -83,11 +83,40 @@ public class AppTerminal {
 
         }
     }
+    private static void bookTreatment(){
+        int id=0;
+        Reservation reservation = bookTreatmentD(id);
+        reservationdao.save(reservation);
+    }
+    private static Reservation bookTreatmentD(int id) {
+        String status;
+        int res_id,treat_id1 = 0,cus_id1;
+        String cus_id= new String();
+        String treat_id= new String();
+        String date;
+        String time;
 
-    private static void bookTreatment() {
 
+        System.out.println("Unique ID of reservation: ");
+        res_id = Integer.parseInt(ulaz.nextLine());
+        System.out.println("Enter your username again: ");
+        customerdao.getCustomerIdByUsername(cus_id);
+        cus_id = ulaz.nextLine();
+        System.out.println("Name of treatment: ");
+        treatmentdao.getTreatmentIDByName(treat_id);
+        treat_id = ulaz.nextLine();
+        System.out.println("Date: ");
+        date = ulaz.nextLine();
+        System.out.println("Time: ");
+        time = ulaz.nextLine();
+        System.out.println("Confirm reservation(enter 'confirm'): ");
+        status = ulaz.nextLine();
+        cus_id1 = Integer.parseInt(cus_id);
+        treat_id = String.valueOf(Integer.parseInt(treat_id));
+        return (new Reservation(res_id,cus_id1,treat_id1,date,time,status));
 
     }
+
 
     private static void infoRes() throws ReservationException {
         System.out.println("Enter your unique id:");
